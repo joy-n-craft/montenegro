@@ -1610,10 +1610,17 @@ function startBackgroundSync(){
 }
 
 async function fetchRemoteAndRerender(){
+  // Skip pull while local push is pending — avoids overwriting unsaved user changes
+  if(pushTimer) return;
+  const before = JSON.stringify({v:VOTES,c:COMMENTS});
   const ok = await fetchRemote();
-  if(ok){
-    // Re-render only if something changed — cheap comparison via JSON
+  if(!ok) return;
+  const after = JSON.stringify({v:VOTES,c:COMMENTS});
+  if(before !== after){
     renderAll();
+    // photos for already-fetched places come from IMG_CACHE inside renderCard;
+    // any new uncached places will be filled in by this background loader
+    loadAllHeroes();
   }
 }
 
@@ -1854,10 +1861,16 @@ function renderCard(p){
   const tierLabel = {S:"I · Жемчужина",A:"II · Очень стоит",B:"III · С оговорками",C:"IV · Углубление"}[p.tier];
   const initial = p.name.charAt(0);
   
+  // Use cached Wikipedia photo if we already fetched it before — survives re-renders
+  const cachedHero = IMG_CACHE[p.id] && IMG_CACHE[p.id].hero;
+  const svgUrl = svgFor(p, 0);
+  const imgSrc = cachedHero || svgUrl;
+  
   card.innerHTML = `
     <div class="both-flag">★ Оба хотим</div>
     <div class="card-photo" id="photo-${p.id}">
-      <img src="${svgFor(p, 0)}" alt="${p.name}" loading="lazy" />
+      <img src="${imgSrc}" alt="${p.name}" loading="lazy"
+           onerror="this.onerror=null;this.src='${svgUrl}';" />
       <div class="fallback">${initial}</div>
       <div class="photo-overlay"></div>
       <div class="cat-badge">${p.cat}</div>
