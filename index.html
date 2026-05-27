@@ -341,9 +341,11 @@ body::before{
 }
 .card-photo img{
   width:100%;height:100%;object-fit:cover;
-  transition:transform .6s ease;
+  transition:transform .6s ease, opacity .4s;
   display:block;
 }
+.card-photo img.loaded{animation:fadeInImg .5s ease}
+@keyframes fadeInImg{from{opacity:0.4}to{opacity:1}}
 .card-photo:hover img{transform:scale(1.04)}
 .card-photo .fallback{
   position:absolute;inset:0;
@@ -1295,6 +1297,164 @@ const PLACES = [
     gems:["Деревня Углень — каменные дома XIX века","Смотровая на Риеку Црноевича сверху — самый известный 'тот самый кадр'"]}
 ];
 
+// ============================================================ WIKIPEDIA IMAGES
+// Free, no-key, CORS-enabled. We fetch:
+//   - hero: lead image of the Wikipedia article (via REST summary endpoint)
+//   - gallery: 6 images from the Commons category
+// Results cached in localStorage for 7 days to make subsequent loads instant.
+
+const WIKI = {
+  1:  ["Kotor", "Kotor"],
+  2:  ["Bay of Kotor", "Bay of Kotor"],
+  3:  ["Durmitor", "Durmitor"],
+  4:  ["Perast", "Our Lady of the Rocks"],
+  5:  ["Đurđevića Tara Bridge", "Đurđevića Tara Bridge"],
+  6:  ["Lovćen", "Mausoleum of Petar II Petrović-Njegoš"],
+  7:  ["Ostrog Monastery", "Ostrog Monastery"],
+  8:  ["Sveti Stefan", "Sveti Stefan"],
+  9:  ["Lake Skadar", "Lake Skadar"],
+  10: ["Cetinje", "Cetinje"],
+  11: ["Stari Bar", "Stari Bar"],
+  12: ["Piva Lake", "Piva Lake"],
+  13: ["Biogradska Gora National Park", "Biogradska Gora National Park"],
+  14: ["Njeguši", "Njeguši"],
+  15: ["Blue Cave (Montenegro)", "Blue Cave (Luštica)"],
+  16: ["Herceg Novi", "Herceg Novi"],
+  17: ["Prokletije", "Prokletije"],
+  18: ["Lipa Cave", "Lipa Cave"],
+  19: ["Bay of Kotor", "Bay of Kotor"],
+  20: ["Our Lady of the Rocks", "Our Lady of the Rocks"],
+  21: ["Budva", "Budva"],
+  22: ["Nevidio", "Komarnica"],
+  23: ["Tara River (Montenegro)", "Tara River Canyon"],
+  24: ["Durmitor National Park", "Durmitor National Park"],
+  25: ["Ulcinj", "Ulcinj"],
+  26: ["Ada Bojana", "Ada Bojana"],
+  27: ["Komovi", "Komovi"],
+  28: ["Risan", "Risan"],
+  29: ["Plantaže", "Plantaže"],
+  30: ["Jaz Beach", "Jaz Beach"],
+  31: ["Morača monastery", "Morača monastery"],
+  32: ["Žabljak Crnojevića", "Žabljak Crnojevića"],
+  33: ["Vrmac", "Vrmac"],
+  34: ["Luštica", "Luštica"],
+  35: ["Trnovačko Lake", "Trnovačko Lake"],
+  36: ["Piva Monastery", "Piva Monastery"],
+  37: ["Savina Monastery", "Savina Monastery"],
+  38: ["Durmitor", "Durmitor"],
+  39: ["Đalovića pećina", "Đalovića Cave"],
+  40: ["Crmnica", "Crmnica"],
+  41: ["Beška (island)", "Beška (Montenegro)"],
+  42: ["Cetinje Monastery", "Cetinje Monastery"],
+  43: ["Ulcinj Salina", "Ulcinj"],
+  44: ["Durmitor", "Durmitor"],
+  45: ["Petrovac, Montenegro", "Petrovac (Budva)"],
+  46: ["Bigovo", "Bigova"],
+  47: ["Risan", "Risan"],
+  48: ["Kolašin", "Kolašin"],
+  49: ["Husein Pasha Mosque, Pljevlja", "Husein Pasha's Mosque in Pljevlja"],
+  50: ["Rijeka Crnojevića", "Rijeka Crnojevića"]
+};
+
+const IMG_CACHE_KEY = "mn_imgs_v1";
+const IMG_CACHE_TTL = 7 * 24 * 60 * 60 * 1000; // 7 days
+let IMG_CACHE = lsGet(IMG_CACHE_KEY) || {};
+function saveImgCache(){ lsSet(IMG_CACHE_KEY, IMG_CACHE); }
+
+async function wikiHero(title){
+  if(!title) return null;
+  try{
+    const r = await fetch(
+      `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`,
+      { headers: { "Accept": "application/json" } }
+    );
+    if(!r.ok) return null;
+    const d = await r.json();
+    return (d.originalimage && d.originalimage.source) ||
+           (d.thumbnail && d.thumbnail.source) || null;
+  }catch(e){ return null; }
+}
+
+async function commonsGallery(category, limit){
+  if(!category) return [];
+  try{
+    const params = new URLSearchParams({
+      action: "query", generator: "categorymembers",
+      gcmtitle: "Category:" + category, gcmlimit: "20", gcmtype: "file",
+      prop: "imageinfo", iiprop: "url|size|mime",
+      iiurlwidth: "1000", format: "json", origin: "*"
+    });
+    const r = await fetch("https://commons.wikimedia.org/w/api.php?" + params);
+    if(!r.ok) return [];
+    const d = await r.json();
+    const pages = (d.query && d.query.pages) || {};
+    const out = [];
+    for(const pg of Object.values(pages)){
+      const ii = (pg.imageinfo || [])[0];
+      if(!ii) continue;
+      const mime = ii.mime || "";
+      if(!mime.startsWith("image/") || mime === "image/svg+xml") continue;
+      const url = ii.thumburl || ii.url;
+      const w = ii.thumbwidth || ii.width || 0;
+      if(url && w >= 600) out.push(url);
+      if(out.length >= (limit || 6)) break;
+    }
+    return out;
+  }catch(e){ return []; }
+}
+
+async function loadHero(placeId){
+  const cached = IMG_CACHE[placeId];
+  const now = Date.now();
+  if(cached && cached.hero !== undefined && (now - (cached.ts||0)) < IMG_CACHE_TTL){
+    return cached.hero;
+  }
+  const w = WIKI[placeId];
+  const hero = w ? await wikiHero(w[0]) : null;
+  IMG_CACHE[placeId] = Object.assign({}, cached, { hero, ts: now });
+  saveImgCache();
+  return hero;
+}
+
+async function loadGallery(placeId){
+  const cached = IMG_CACHE[placeId];
+  const now = Date.now();
+  if(cached && cached.gallery && (now - (cached.ts||0)) < IMG_CACHE_TTL){
+    return cached.gallery;
+  }
+  const w = WIKI[placeId];
+  const gallery = w ? await commonsGallery(w[1], 6) : [];
+  IMG_CACHE[placeId] = Object.assign({}, cached, { gallery, ts: now });
+  saveImgCache();
+  return gallery;
+}
+
+// Replace SVG hero on each card with the real Wikipedia photo when it arrives.
+// Concurrent but throttled (max 6 in flight) to be polite to the API.
+async function loadAllHeroes(){
+  const cards = Array.from(document.querySelectorAll(".card[data-id]"));
+  const tasks = cards.map(card => async () => {
+    const id = parseInt(card.dataset.id);
+    const url = await loadHero(id);
+    if(!url) return;
+    const img = card.querySelector(".card-photo img");
+    if(!img) return;
+    // preload then swap (avoids broken-image flash)
+    await new Promise(res => {
+      const test = new Image();
+      test.onload = () => { img.src = url; img.classList.add("loaded"); res(); };
+      test.onerror = () => res();
+      test.src = url;
+    });
+  });
+  // worker pool
+  const POOL = 6;
+  const queue = tasks.slice();
+  await Promise.all(Array.from({length:POOL}, async () => {
+    while(queue.length){ await queue.shift()(); }
+  }));
+}
+
 // ============================================================ STORAGE LAYER
 // Hybrid: jsonbin.io for cross-device sync + localStorage cache
 //   Config in localStorage: {binId, masterKey}
@@ -1745,18 +1905,33 @@ function openGallery(id){
   const p = PLACES.find(x => x.id === id);
   document.getElementById("gallery-title").textContent = p.name;
   const grid = document.getElementById("gallery-grid");
-  grid.innerHTML = "";
-  // 6 SVG variants — different gradient angles + atmospheric overlays
-  for(let i=0;i<6;i++){
-    const img = document.createElement("img");
-    img.src = svgFor(p, i);
-    img.alt = p.name;
-    img.loading = "lazy";
-    grid.appendChild(img);
-  }
+  grid.innerHTML = `<div class="loader" style="grid-column:1/-1">Загружаем фотографии из Wikimedia Commons…</div>`;
   document.getElementById("google-images-link").href = gImagesUrl(p);
   document.getElementById("yandex-images-link").href = yImagesUrl(p);
   document.getElementById("gallery-modal").classList.add("open");
+
+  loadGallery(id).then(urls => {
+    grid.innerHTML = "";
+    if(urls && urls.length > 0){
+      urls.forEach(url => {
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = p.name;
+        img.loading = "lazy";
+        img.onerror = function(){ this.style.display = "none"; };
+        grid.appendChild(img);
+      });
+    } else {
+      // Fallback: SVG variants as before
+      for(let i = 0; i < 6; i++){
+        const img = document.createElement("img");
+        img.src = svgFor(p, i);
+        img.alt = p.name;
+        img.loading = "lazy";
+        grid.appendChild(img);
+      }
+    }
+  });
 }
 
 function openComments(id){
@@ -2090,6 +2265,8 @@ document.getElementById("open-settings").addEventListener("click", openSettings)
   await loadAll();
   renderAll();
   startBackgroundSync();
+  // Load real Wikipedia photos in the background — SVG posters stay until photos arrive
+  loadAllHeroes();
   // first run? open setup
   if(!CONFIG && !lsGet(LS_STATE + "_dismissed")){
     setTimeout(() => {
