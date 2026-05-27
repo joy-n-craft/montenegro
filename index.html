@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Crna Gora — Путеводитель для двоих</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,500;1,9..144,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Big+Shoulders+Display:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a1a26;
+  --ink-soft:#2d2d3d;
+  --paper:#f1e8d4;
+  --paper-2:#faf3e1;
+  --paper-3:#fbf7eb;
+  --paper-deep:#e7dcc1;
+  --gold:#b88a2e;
+  --gold-bright:#d9a93f;
+  --gold-glow:#f3cf68;
+  --sea:#2b5868;
+  --sea-deep:#1c3e4b;
+  --stone:#6b6358;
+  --stone-soft:#8a8073;
+  --rust:#9b4429;
+  --moss:#4f6437;
+  --plum:#5a3a52;
+  --shadow:rgba(26,26,38,.18);
+  --shadow-deep:rgba(26,26,38,.32);
+  --line:rgba(26,26,38,.14);
+  --line-strong:rgba(26,26,38,.28);
+  --warn:#b16830;
+  --bad:#a3372a;
+  --good:#4f6437;
+  --gem:#7c5a8a;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"EB Garamond",Georgia,serif;
+  font-size:17px;
+  line-height:1.55;
+  color:var(--ink);
+  background:var(--paper);
+  background-image:
+    radial-gradient(at 20% 10%,rgba(184,138,46,.08) 0,transparent 50%),
+    radial-gradient(at 80% 70%,rgba(43,88,104,.08) 0,transparent 50%),
+    radial-gradient(at 60% 90%,rgba(155,68,41,.06) 0,transparent 50%);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* paper texture */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(26,26,38,.015) 0,rgba(26,26,38,.015) 1px,transparent 1px,transparent 3px),
+    repeating-linear-gradient(90deg,rgba(26,26,38,.015) 0,rgba(26,26,38,.015) 1px,transparent 1px,transparent 3px);
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:multiply;
+}
+
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px;position:relative;z-index:2}
+
+/* ===== HERO ===== */
+.hero{
+  position:relative;
+  padding:80px 0 60px;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-40px;right:-100px;
+  width:520px;height:520px;
+  background:radial-gradient(circle,var(--gold-glow) 0%,transparent 60%);
+  opacity:.22;
+  pointer-events:none;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:-80px;left:-80px;
+  width:380px;height:380px;
+  background:radial-gradient(circle,var(--sea) 0%,transparent 60%);
+  opacity:.18;
+  pointer-events:none;
+}
+.eyebrow{
+  display:flex;align-items:center;gap:14px;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-weight:700;
+  font-size:13px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:18px;
+}
+.eyebrow::before,.eyebrow::after{
+  content:"";flex:1 0 40px;height:1px;background:var(--gold);max-width:80px;
+}
+.eyebrow::after{display:none}
+@media(min-width:760px){.eyebrow::after{display:block}}
+
+.hero h1{
+  font-family:"Fraunces",serif;
+  font-weight:300;
+  font-style:italic;
+  font-size:clamp(56px,10vw,140px);
+  line-height:.92;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  margin-bottom:8px;
+}
+.hero h1 .accent{
+  font-style:normal;
+  font-weight:900;
+  color:var(--gold);
+}
+.hero .sub{
+  font-family:"Fraunces",serif;
+  font-size:clamp(22px,3vw,32px);
+  font-weight:300;
+  color:var(--stone);
+  margin-bottom:32px;
+  font-style:italic;
+}
+.intro-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+  max-width:1000px;
+  margin-top:40px;
+}
+@media(min-width:760px){.intro-grid{grid-template-columns:1.4fr 1fr;gap:60px}}
+.intro-body{
+  font-size:18px;
+  line-height:1.7;
+  color:var(--ink-soft);
+}
+.intro-body p{margin-bottom:14px}
+.intro-body strong{color:var(--gold);font-weight:600}
+.intro-body em{color:var(--rust);font-style:italic}
+.meta-card{
+  background:var(--paper-2);
+  border:1px solid var(--line);
+  padding:24px;
+  position:relative;
+}
+.meta-card::before{
+  content:"";position:absolute;
+  top:8px;left:8px;right:8px;bottom:8px;
+  border:1px solid var(--gold);
+  pointer-events:none;
+  opacity:.35;
+}
+.meta-card h3{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:13px;letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:700;
+  margin-bottom:14px;
+}
+.meta-card ul{list-style:none;font-family:"EB Garamond",serif;font-size:16px}
+.meta-card li{
+  padding:8px 0;
+  border-bottom:1px dotted var(--line);
+  display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+}
+.meta-card li:last-child{border-bottom:0}
+.meta-card .k{color:var(--stone);font-style:italic;font-size:14px}
+.meta-card .v{color:var(--ink);font-weight:500;text-align:right}
+
+/* ===== TOOLBAR ===== */
+.toolbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--paper);
+  border-bottom:1px solid var(--line-strong);
+  padding:14px 0;
+  backdrop-filter:blur(6px);
+  background:rgba(241,232,212,.94);
+}
+.toolbar-inner{
+  display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;
+}
+.filters{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.filter-group{display:flex;gap:4px;align-items:center}
+.filter-label{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--stone);
+  margin-right:6px;
+}
+.chip{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:6px 12px;
+  border:1px solid var(--line-strong);
+  background:transparent;
+  color:var(--ink);
+  cursor:pointer;
+  transition:all .18s;
+  border-radius:0;
+}
+.chip:hover{background:var(--paper-deep);border-color:var(--ink)}
+.chip.active{background:var(--ink);color:var(--paper-2);border-color:var(--ink)}
+.chip.active.gold{background:var(--gold);border-color:var(--gold);color:var(--paper-3)}
+
+.persona-toggle{
+  display:flex;gap:0;
+  border:1px solid var(--ink);
+  margin-left:6px;
+}
+.persona-btn{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-weight:700;font-size:12px;letter-spacing:.14em;
+  padding:7px 14px;
+  background:transparent;border:0;cursor:pointer;
+  text-transform:uppercase;
+  color:var(--ink);
+  transition:all .18s;
+}
+.persona-btn.active.him{background:var(--sea);color:var(--paper-3)}
+.persona-btn.active.her{background:var(--rust);color:var(--paper-3)}
+
+/* ===== STATS BAR ===== */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1px;
+  margin:30px 0 20px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{
+  background:var(--paper-2);
+  padding:18px 16px;
+  text-align:center;
+}
+.stat .n{
+  font-family:"Fraunces",serif;
+  font-size:42px;
+  font-weight:900;
+  line-height:1;
+  color:var(--gold);
+  margin-bottom:4px;
+}
+.stat .l{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--stone);
+}
+.stat.both .n{color:var(--moss)}
+.stat.him .n{color:var(--sea)}
+.stat.her .n{color:var(--rust)}
+
+/* ===== TIER SECTIONS ===== */
+.tier-section{margin:60px 0 40px}
+.tier-head{
+  display:flex;align-items:baseline;gap:18px;
+  margin-bottom:32px;
+  padding-bottom:14px;
+  border-bottom:2px solid var(--ink);
+  position:relative;
+}
+.tier-head::after{
+  content:"";position:absolute;bottom:-5px;left:0;width:60px;height:2px;background:var(--gold);
+}
+.tier-num{
+  font-family:"Fraunces",serif;
+  font-weight:900;
+  font-size:64px;
+  line-height:.9;
+  color:var(--gold);
+  font-feature-settings:"lnum";
+}
+.tier-title{
+  font-family:"Fraunces",serif;
+  font-weight:500;
+  font-style:italic;
+  font-size:clamp(28px,4vw,40px);
+  line-height:1;
+  color:var(--ink);
+}
+.tier-meta{
+  margin-left:auto;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:12px;letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--stone);
+}
+
+/* ===== GRID ===== */
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:32px;
+}
+@media(min-width:880px){.grid{grid-template-columns:1fr 1fr}}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--paper-2);
+  border:1px solid var(--line-strong);
+  position:relative;
+  display:flex;flex-direction:column;
+  transition:transform .25s,box-shadow .25s;
+  box-shadow:0 1px 0 var(--shadow);
+}
+.card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px var(--shadow);
+}
+.card.hidden{display:none}
+.card::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:var(--gold);
+}
+.card[data-tier="S"]::before{background:linear-gradient(90deg,var(--gold-bright),var(--gold))}
+.card[data-tier="A"]::before{background:var(--sea)}
+.card[data-tier="B"]::before{background:var(--rust)}
+.card[data-tier="C"]::before{background:var(--stone-soft)}
+
+.card-photo{
+  position:relative;
+  height:280px;
+  background:var(--paper-deep);
+  overflow:hidden;
+  cursor:pointer;
+}
+.card-photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+  display:block;
+}
+.card-photo:hover img{transform:scale(1.04)}
+.card-photo .fallback{
+  position:absolute;inset:0;
+  display:none;
+  align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--sea-deep),var(--ink));
+  color:var(--gold-glow);
+  font-family:"Fraunces",serif;
+  font-size:80px;
+  font-weight:300;
+  font-style:italic;
+}
+.card-photo.no-img .fallback{display:flex}
+.card-photo.no-img img{display:none}
+.photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(26,26,38,.6));
+  pointer-events:none;
+}
+.photo-meta{
+  position:absolute;bottom:14px;left:18px;right:18px;
+  display:flex;justify-content:space-between;align-items:flex-end;
+  color:var(--paper-3);
+}
+.rank-num{
+  font-family:"Fraunces",serif;
+  font-weight:900;
+  font-size:74px;
+  line-height:.85;
+  color:var(--gold-glow);
+  text-shadow:0 2px 10px rgba(0,0,0,.5);
+  font-feature-settings:"lnum";
+}
+.tier-badge{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:4px 10px;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.2);
+  color:var(--gold-glow);
+}
+.cat-badge{
+  position:absolute;top:14px;left:14px;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:5px 11px;
+  background:rgba(241,232,212,.92);
+  color:var(--ink);
+  backdrop-filter:blur(4px);
+}
+.photo-gallery-btn{
+  position:absolute;top:14px;right:14px;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:6px 11px;
+  background:rgba(26,26,38,.7);
+  color:var(--paper-3);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(4px);
+  cursor:pointer;
+  transition:all .2s;
+}
+.photo-gallery-btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+
+.card-body{padding:24px 26px 20px;flex:1;display:flex;flex-direction:column}
+.card-title{
+  font-family:"Fraunces",serif;
+  font-weight:500;
+  font-size:26px;
+  line-height:1.15;
+  letter-spacing:-.01em;
+  margin-bottom:10px;
+  color:var(--ink);
+}
+.card-desc{
+  font-size:16.5px;
+  line-height:1.6;
+  color:var(--ink-soft);
+  margin-bottom:18px;
+}
+
+.detail-section{margin-bottom:14px}
+.detail-section:last-of-type{margin-bottom:18px}
+.detail-head{
+  display:flex;align-items:center;gap:8px;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.22em;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.detail-head.pros{color:var(--good)}
+.detail-head.cons{color:var(--warn)}
+.detail-head.warn{color:var(--bad)}
+.detail-head.gem{color:var(--gem)}
+.detail-head .ico{
+  display:inline-flex;width:18px;height:18px;
+  border:1.5px solid currentColor;
+  border-radius:50%;
+  align-items:center;justify-content:center;
+  font-size:10px;font-weight:900;
+  font-family:"Fraunces",serif;
+}
+.detail-list{list-style:none;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
+.detail-list li{
+  padding:3px 0 3px 16px;
+  position:relative;
+}
+.detail-list li::before{
+  content:"";position:absolute;left:0;top:11px;
+  width:6px;height:6px;
+  border:1px solid currentColor;
+  transform:rotate(45deg);
+  opacity:.5;
+}
+.detail-list.pros li::before{background:var(--good);border-color:var(--good);opacity:.7}
+.detail-list.cons li::before{background:var(--warn);border-color:var(--warn);opacity:.7}
+.detail-list.warn li::before{background:var(--bad);border-color:var(--bad);opacity:.7}
+.detail-list.gem li::before{background:var(--gem);border-color:var(--gem);opacity:.7}
+
+.card-actions{
+  display:flex;flex-wrap:wrap;gap:8px;
+  padding-top:16px;
+  border-top:1px dotted var(--line-strong);
+  margin-top:auto;
+}
+.act{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:8px 12px;
+  border:1px solid var(--line-strong);
+  background:transparent;
+  color:var(--ink);
+  cursor:pointer;
+  transition:all .18s;
+  text-decoration:none;
+  display:inline-flex;align-items:center;gap:6px;
+  line-height:1;
+}
+.act:hover{background:var(--ink);color:var(--paper-3);border-color:var(--ink)}
+.act.map:hover{background:var(--sea);border-color:var(--sea)}
+.act.gallery:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.act.comment{
+  margin-left:auto;
+}
+.act .count{
+  background:var(--gold);color:var(--ink);
+  padding:1px 6px;border-radius:10px;font-size:10px;
+}
+
+.vote-row{
+  display:flex;gap:8px;
+  padding:14px 26px;
+  background:var(--paper-3);
+  border-top:1px solid var(--line);
+}
+.vote-btn{
+  flex:1;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:12px;letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:700;
+  padding:10px 14px;
+  border:2px solid;
+  background:transparent;
+  cursor:pointer;
+  transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  line-height:1;
+}
+.vote-btn.him{color:var(--sea);border-color:var(--sea)}
+.vote-btn.her{color:var(--rust);border-color:var(--rust)}
+.vote-btn.him.active{background:var(--sea);color:var(--paper-3)}
+.vote-btn.her.active{background:var(--rust);color:var(--paper-3)}
+.vote-btn:hover{transform:translateY(-1px)}
+.vote-btn .heart{font-size:14px}
+
+.card.both-want{
+  background:linear-gradient(135deg,var(--paper-2),#f6efd9);
+  border-color:var(--gold);
+}
+.card.both-want::before{
+  background:linear-gradient(90deg,var(--gold-bright),var(--gold),var(--gold-bright));
+  height:5px;
+}
+.both-flag{
+  position:absolute;top:-12px;right:14px;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:700;
+  background:var(--gold);color:var(--ink);
+  padding:5px 12px;
+  display:none;
+}
+.card.both-want .both-flag{display:block}
+
+/* ===== MODAL ===== */
+.modal-bg{
+  position:fixed;inset:0;
+  background:rgba(26,26,38,.84);
+  backdrop-filter:blur(8px);
+  z-index:100;
+  display:none;
+  align-items:center;justify-content:center;
+  padding:20px;
+}
+.modal-bg.open{display:flex;animation:fadeIn .25s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:var(--paper-2);
+  max-width:880px;width:100%;
+  max-height:90vh;overflow-y:auto;
+  position:relative;
+  border:1px solid var(--gold);
+  animation:slideUp .35s cubic-bezier(.2,.7,.3,1);
+}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{
+  position:absolute;top:14px;right:14px;
+  width:36px;height:36px;
+  background:var(--ink);color:var(--paper-3);
+  border:0;cursor:pointer;font-size:18px;
+  z-index:5;
+  font-family:"Fraunces",serif;
+}
+.modal-head{padding:24px 28px 18px;border-bottom:1px solid var(--line)}
+.modal-head h2{
+  font-family:"Fraunces",serif;
+  font-weight:500;font-size:28px;
+  letter-spacing:-.01em;
+  padding-right:40px;
+}
+.modal-body{padding:20px 28px 24px}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+}
+.gallery img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  display:block;
+  background:var(--paper-deep);
+}
+@media(min-width:640px){.gallery{grid-template-columns:repeat(3,1fr)}}
+.gallery-actions{
+  display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;
+}
+
+.comments-list{margin:18px 0;display:flex;flex-direction:column;gap:14px;max-height:280px;overflow-y:auto}
+.comment{
+  padding:12px 14px;
+  background:var(--paper-3);
+  border-left:3px solid;
+  font-size:15.5px;line-height:1.5;
+}
+.comment.him{border-left-color:var(--sea)}
+.comment.her{border-left-color:var(--rust)}
+.comment-head{
+  display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+  margin-bottom:5px;
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:700;
+}
+.comment.him .comment-head .who{color:var(--sea)}
+.comment.her .comment-head .who{color:var(--rust)}
+.comment-time{color:var(--stone-soft);font-size:10px;font-weight:400;letter-spacing:.1em}
+.comment-text{color:var(--ink-soft)}
+
+.comment-form{
+  display:flex;flex-direction:column;gap:10px;
+  padding-top:14px;border-top:1px dotted var(--line-strong);
+}
+.comment-form textarea{
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--line-strong);
+  background:var(--paper-3);
+  font-family:"EB Garamond",serif;font-size:15.5px;
+  resize:vertical;min-height:64px;
+  color:var(--ink);
+}
+.comment-form textarea:focus{outline:none;border-color:var(--gold)}
+.comment-form-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.comment-form .who-pick{display:flex;gap:0;border:1px solid var(--line-strong)}
+.comment-form .who-pick button{
+  font-family:"Big Shoulders Display",sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:7px 12px;background:transparent;border:0;cursor:pointer;color:var(--ink);
+}
+.comment-form .who-pick button.active.him{background:var(--sea);color:var(--paper-3)}
+.comment-form .who-pick button.active.her{background:var(--rust);color:var(--paper-3)}
+.comment-form .submit{
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:700;
+  padding:8px 16px;
+  background:var(--ink);color:var(--paper-3);border:0;cursor:pointer;
+  margin-left:auto;
+}
+.comment-form .submit:hover{background:var(--gold);color:var(--ink)}
+.no-comments{
+  text-align:center;padding:24px;color:var(--stone);font-style:italic;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:80px;
+  padding:40px 0;
+  border-top:1px solid var(--line);
+  text-align:center;
+  font-family:"EB Garamond",serif;
+  font-style:italic;
+  color:var(--stone);
+  font-size:14px;
+}
+footer .ornament{
+  font-family:"Fraunces",serif;
+  font-size:24px;
+  color:var(--gold);
+  margin-bottom:8px;
+}
+
+/* ===== UTILITY ===== */
+.divider{
+  display:flex;align-items:center;gap:14px;
+  margin:50px 0;
+  color:var(--gold);
+}
+.divider::before,.divider::after{
+  content:"";flex:1;height:1px;background:var(--gold);opacity:.4;
+}
+.divider .orn{font-family:"Fraunces",serif;font-size:22px}
+
+.loader{
+  text-align:center;padding:40px;color:var(--stone);font-style:italic;
+}
+
+/* ===== SYNC INDICATOR (fixed bottom-right) ===== */
+.sync-indicator{
+  position:fixed;
+  bottom:18px;right:18px;
+  z-index:80;
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px;
+  background:var(--paper-2);
+  border:1px solid var(--line-strong);
+  font-family:"Big Shoulders Display",sans-serif;
+  font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:700;
+  color:var(--ink);
+  box-shadow:0 4px 12px var(--shadow);
+  cursor:pointer;
+  transition:transform .2s;
+  max-width:240px;
+}
+.sync-indicator:hover{transform:translateY(-1px)}
+.sync-dot{
+  width:9px;height:9px;border-radius:50%;
+  background:#8a8073;
+  box-shadow:0 0 0 2px var(--paper-2),0 0 0 3px rgba(0,0,0,.06);
+  transition:background .3s;
+  flex:0 0 9px;
+}
+.sync-label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ===== SETUP / SETTINGS MODAL ===== */
+.setup-body{padding:24px 28px 28px}
+.setup-body h2{
+  font-family:"Fraunces",serif;font-weight:500;font-size:32px;
+  letter-spacing:-.01em;margin-bottom:6px;
+}
+.setup-body .setup-sub{
+  font-family:"Fraunces",serif;font-style:italic;font-size:18px;
+  color:var(--stone);margin-bottom:24px;line-height:1.4;
+}
+.setup-step{
+  display:flex;gap:16px;
+  margin-bottom:18px;
+  padding-bottom:18px;
+  border-bottom:1px dotted var(--line-strong);
+}
+.setup-step:last-of-type{border-bottom:0}
+.setup-step-num{
+  font-family:"Fraunces",serif;font-weight:900;font-size:40px;
+  line-height:1;color:var(--gold);flex:0 0 50px;
+}
+.setup-step-body{flex:1;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
+.setup-step-body strong{color:var(--ink);font-weight:600}
+.setup-step-body a{color:var(--sea);text-decoration:underline;text-underline-offset:2px}
+.setup-step-body a:hover{color:var(--gold)}
+.setup-step-body code{
+  background:var(--paper-3);padding:1px 6px;border:1px solid var(--line);
+  font-family:"Courier New",monospace;font-size:13px;
+}
+.setup-input{
+  width:100%;
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid var(--line-strong);
+  background:var(--paper-3);
+  font-family:"Courier New",monospace;
+  font-size:14px;
+  color:var(--ink);
+}
+.setup-input:focus{outline:none;border-color:var(--gold)}
+.setup-actions{
+  display:flex;gap:10px;margin-top:20px;flex-wrap:wrap;
+}
+.setup-btn{
+  font-family:"Big Shoulders Display",sans-serif;font-weight:700;
+  font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  padding:10px 18px;border:0;cursor:pointer;
+}
+.setup-btn.primary{background:var(--ink);color:var(--paper-3)}
+.setup-btn.primary:hover{background:var(--gold);color:var(--ink)}
+.setup-btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line-strong)}
+.setup-btn.ghost:hover{background:var(--paper-deep)}
+.setup-msg{
+  margin-top:12px;padding:10px 12px;
+  font-size:14px;font-family:"EB Garamond",serif;font-style:italic;
+}
+.setup-msg.error{background:rgba(163,55,42,.1);color:var(--bad);border-left:3px solid var(--bad)}
+.setup-msg.ok{background:rgba(79,100,55,.1);color:var(--good);border-left:3px solid var(--good)}
+
+.share-box{
+  background:var(--paper-3);
+  border:1px dashed var(--gold);
+  padding:14px;
+  margin-top:14px;
+  word-break:break-all;
+  font-family:"Courier New",monospace;
+  font-size:12px;line-height:1.5;
+  color:var(--ink);
+}
+
+.settings-btn{
+  font-family:"Big Shoulders Display",sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;
+  padding:6px 12px;border:1px solid var(--line-strong);background:transparent;color:var(--ink);
+  cursor:pointer;transition:all .18s;border-radius:0;
+}
+.settings-btn:hover{background:var(--ink);color:var(--paper-3);border-color:var(--ink)}
+
+@media(max-width:540px){
+  .card-actions{gap:6px}
+  .act{padding:7px 10px;font-size:10.5px}
+  .vote-btn{font-size:11px;padding:9px 10px}
+  .card-body{padding:20px 20px 16px}
+  .card-title{font-size:22px}
+  .sync-indicator{bottom:12px;right:12px;padding:6px 10px;font-size:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================================================================== HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow"><span>Путеводитель для двоих · Июль 2026</span></div>
+    <h1>Crna <span class="accent">Gora</span></h1>
+    <div class="sub">Пятьдесят мест с честной оценкой каждого</div>
+
+    <div class="intro-grid">
+      <div class="intro-body">
+        <p>Это не туристический справочник. Это <strong>отобранные с критикой</strong> места — от очевидных жемчужин до тихих находок, о которых не пишут. Каждое оценено для пары 40+ в июле: жара, толпы, доступ на машине, реалистичность пеших троп.</p>
+        <p>Голосуйте независимо — каждый выбирает <em>своё</em>. В конце станет видно, на чём <strong>оба сошлись</strong>, что хочет только один, а что можно смело пропустить.</p>
+        <p>Комментарии сохраняются. Голоса тоже. Возвращайтесь сюда из любой точки путешествия.</p>
+      </div>
+      <div class="meta-card">
+        <h3>Маршрут</h3>
+        <ul>
+          <li><span class="k">Период</span><span class="v">Июль 2026</span></li>
+          <li><span class="k">Длительность</span><span class="v">10–12 дней</span></li>
+          <li><span class="k">Транспорт</span><span class="v">Своя машина</span></li>
+          <li><span class="k">Базы</span><span class="v">Котор · Жабляк · Скадар</span></li>
+          <li><span class="k">Аэропорт</span><span class="v">Тиват (TIV)</span></li>
+          <li><span class="k">Мест</span><span class="v">50</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================================================================== TOOLBAR -->
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+    <div class="filters">
+      <span class="filter-label">Уровень</span>
+      <button class="chip tier-chip active" data-tier="all">Все</button>
+      <button class="chip tier-chip" data-tier="S">I · Жемчужины</button>
+      <button class="chip tier-chip" data-tier="A">II · Очень стоит</button>
+      <button class="chip tier-chip" data-tier="B">III · С оговорками</button>
+      <button class="chip tier-chip" data-tier="C">IV · Углубление</button>
+    </div>
+    <div class="filters">
+      <span class="filter-label">Голоса</span>
+      <button class="chip vote-chip active" data-vote="all">Все</button>
+      <button class="chip vote-chip gold" data-vote="both">Оба хотим</button>
+      <button class="chip vote-chip" data-vote="him">Только он</button>
+      <button class="chip vote-chip" data-vote="her">Только она</button>
+      <button class="chip vote-chip" data-vote="none">Без голосов</button>
+      <button class="settings-btn" id="open-settings" style="margin-left:10px">⚙ Настройки</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================================== STATS -->
+<div class="wrap">
+  <div class="stats">
+    <div class="stat both"><div class="n" id="stat-both">0</div><div class="l">Оба хотим</div></div>
+    <div class="stat him"><div class="n" id="stat-him">0</div><div class="l">Хочет он</div></div>
+    <div class="stat her"><div class="n" id="stat-her">0</div><div class="l">Хочет она</div></div>
+    <div class="stat"><div class="n" id="stat-comments">0</div><div class="l">Комментариев</div></div>
+  </div>
+</div>
+
+<!-- ===================================================================== PLACES -->
+<main class="wrap" id="places-root">
+  <div class="loader">Загружаем сокровища…</div>
+</main>
+
+<footer>
+  <div class="ornament">·  ✦  ·</div>
+  <div>Составлено с любовью к двум путешественникам · Crna Gora · Léto 2026</div>
+</footer>
+
+<!-- ===================================================================== MODALS -->
+<div class="modal-bg" id="gallery-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('gallery-modal')">×</button>
+    <div class="modal-head"><h2 id="gallery-title">Галерея</h2></div>
+    <div class="modal-body">
+      <div style="font-family:'EB Garamond',serif;font-style:italic;color:var(--stone);font-size:14px;margin-bottom:14px;line-height:1.5">
+        Иллюстрации к этому месту — атмосферные постеры в стиле страницы. Реальные фотографии — по кнопкам ниже (откроются в новой вкладке).
+      </div>
+      <div class="gallery" id="gallery-grid"></div>
+      <div class="gallery-actions">
+        <a class="act gallery" id="google-images-link" target="_blank" rel="noopener">→ Найти больше в Google Images</a>
+        <a class="act" id="yandex-images-link" target="_blank" rel="noopener">→ Yandex Images</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-bg" id="comment-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('comment-modal')">×</button>
+    <div class="modal-head"><h2 id="comment-title">Комментарии</h2></div>
+    <div class="modal-body">
+      <div class="comments-list" id="comments-list"></div>
+      <div class="comment-form">
+        <textarea id="comment-text" placeholder="Что думаешь?"></textarea>
+        <div class="comment-form-row">
+          <div class="who-pick" id="comment-who-pick">
+            <button class="active him" data-who="him">👨 Он</button>
+            <button class="her" data-who="her">👩 Она</button>
+          </div>
+          <button class="submit" id="comment-submit">Отправить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================================== SETTINGS / SETUP MODAL -->
+<div class="modal-bg" id="settings-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('settings-modal')">×</button>
+    <div class="setup-body" id="settings-body">
+      <!-- content rendered by JS depending on state -->
+    </div>
+  </div>
+</div>
+
+<!-- ===================================================================== SYNC INDICATOR -->
+<div class="sync-indicator" id="sync-indicator" onclick="openSettings()">
+  <span class="sync-dot"></span>
+  <span class="sync-label">…</span>
+</div>
+
+<script>
+// ============================================================ DATA: 50 PLACES
+const PLACES = [
+  // ============== TIER S — ВЫСШИЙ ЭШЕЛОН (1-10) ==============
+  {id:1,rank:1,tier:"S",name:"Старый Котор + крепость Сан-Джованни",cat:"Город · ЮНЕСКО",coords:{lat:42.4247,lng:18.7712},photoTag:"kotor,fortress,montenegro",
+    desc:"Жемчужина страны. 1350 ступеней до крепости на скале — единственное лучшее впечатление в Черногории. Вид на бухту с высоты 280 м снимает все вопросы о том, зачем вы сюда приехали.",
+    pros:["Виды с крепостных стен — лучшие в стране","Сам Старый город компактный, обойти за день","Касса открыта с 6:00, можно подняться до жары"],
+    cons:["С 10:00 до 16:00 — толпы с 3-4 круизных лайнеров","Подъём в +35°C — реально опасен"],
+    warn:["Не лезьте наверх с 11 до 16 — были случаи теплового удара","Парковки в Старом городе нет — оставляйте машину за стенами"],
+    gems:["Бесплатная боковая тропа через деревню Шпильяри обходит платный вход","На стенах между Бембо и церковью Богородицы Здравья — лучшая точка для заката"]},
+
+  {id:2,rank:2,tier:"S",name:"Бока-Которская бухта целиком",cat:"Природа · Дорога",coords:{lat:42.4619,lng:18.6889},photoTag:"bay,kotor,boka",
+    desc:"Один из самых драматичных морских пейзажей Средиземноморья. Обязательно проехать оба берега от Котора через Рисан, Пераст до Каменари. С парома виды лучше любой смотровой.",
+    pros:["Бесплатно (кроме парома €5)","В любое время суток красиво","Можно растянуть на целый день с остановками"],
+    cons:["Дорога узкая, в июле — пробки у Рисана","Заправок мало по дороге"],
+    warn:["Не делайте полный круг под закат — назад ехать в темноте по серпантину неприятно"],
+    gems:["Паром Каменари–Лепетане ходит каждые 15 минут, экономит 40 км пути","Деревня Столив на спокойном берегу — лучшая остановка на обед"]},
+
+  {id:3,rank:3,tier:"S",name:"Дурмитор: Чёрное озеро + Боботов Кук",cat:"Горы · ЮНЕСКО",coords:{lat:43.1417,lng:19.0972},photoTag:"durmitor,black,lake",
+    desc:"Это другая Черногория — альпийская, прохладная, без круизников. В июле здесь +20°C, на пиках местами лежит снег. Чёрное озеро многолюдно, но обход (3,6 км) фантастический.",
+    pros:["Спасение от прибрежной жары","18 ледниковых озёр в радиусе 10 км","Воздух — отдельная достопримечательность"],
+    cons:["Боботов Кук (2523м) — серьёзный хайк 5-6 часов","Жабляк сам по себе — скучный городок"],
+    warn:["Погода меняется за час — берите дождевик даже в ясное утро","На Боботов Кук нельзя в дождь — мокрые скалы опасны"],
+    gems:["От перевала Седло — самый короткий путь к вершине (3 часа в одну сторону)","Озеро Змияно в 30 мин от Чёрного — почти всегда пустое"]},
+
+  {id:4,rank:4,tier:"S",name:"Пераст + Госпа од Шкрпьела",cat:"Город · Море",coords:{lat:42.4869,lng:18.6989},photoTag:"perast,island,church",
+    desc:"Барочный городок без машин, лодки (€5) на рукотворный островок XV века с церковью. Намного спокойнее Котора. Если выберете остаться на ночь в Перасте, а не в Которе — не пожалеете.",
+    pros:["Атмосфера без круизных толп","Лодки на остров каждые 15 минут","Лучшие закаты в бухте"],
+    cons:["Парковка летом — кошмар, лучше пешком от Рисана","Мало ресторанов, столики бронируйте заранее"],
+    warn:["Купаться у самого Пераста неудобно — каменный берег и лодки"],
+    gems:["Соседний остров Святого Георгия (природный) красивее на фото, но закрыт — на него только смотреть","Konoba Otok Bronza — лучший рыбный ресторан, прямо у воды"]},
+
+  {id:5,rank:5,tier:"S",name:"Каньон Тары + мост Джурджевича",cat:"Природа · Адреналин",coords:{lat:43.1486,lng:19.2942},photoTag:"tara,canyon,bridge",
+    desc:"Второй по глубине каньон в мире (1300 м). Сам мост 1940 года — шедевр инженерии. В июле работает зиплайн через каньон (1050 м, до 120 км/ч) — реально захватывающе.",
+    pros:["Зиплайн €20-30, безопасный, не страшный","Можно совместить с Дурмитором за день","Бесплатно — просто посмотреть"],
+    cons:["В сезон у моста — толпа автобусов","Рафтинг в июле — низкая вода, скорее круиз чем спорт"],
+    warn:["Парковка — частная, €3-5","Не покупайте 'сувениры' у моста, везде втрое дороже"],
+    gems:["Чуть выше моста есть смотровая Чуревац с лучшим видом на каньон","Источник Лютица (1 км) — кратчайшая река в Европе, бирюзовая вода"]},
+
+  {id:6,rank:6,tier:"S",name:"Ловчен + мавзолей Негоша",cat:"Горы · Культура",coords:{lat:42.4022,lng:18.8378},photoTag:"lovcen,mausoleum,montenegro",
+    desc:"На 1657 м, виды на полстраны до Албании. 461 ступенька внутри горы к мавзолею. Прохлада в +35°C на побережье — здесь +22°C. Серпантин из Котора (25 поворотов) — сам по себе достопримечательность.",
+    pros:["Самая красивая дорога в стране","Лучшая панорама всей Черногории","Прохладно даже в самый жаркий день"],
+    cons:["Дорога Котор-Ловчен узкая и серпантинная","Внутри мавзолея бывают группы"],
+    warn:["Не пытайтесь на машине с прицепом или большой машине — некоторые повороты не пройдёте","Туман на горе бывает внезапный"],
+    gems:["Смотровая 'Krsac' выше мавзолея — туда мало кто доходит, виды эпические","Ресторан Konoba Belveder у дороги — местная еда, домашнее вино, виды бесплатно"]},
+
+  {id:7,rank:7,tier:"S",name:"Острог монастырь",cat:"Религия · Архитектура",coords:{lat:42.6781,lng:19.0306},photoTag:"ostrog,monastery,cliff",
+    desc:"Вырубленный в отвесной скале монастырь, уникален в мире. Действующая святыня — поэтому толпы паломников; но архитектурно — без аналогов. Идите рано утром.",
+    pros:["Бесплатный вход","Открыт с 6:00 до позднего вечера","Подъехать можно прямо к Верхнему монастырю"],
+    cons:["В сезон толпы паломников, особенно по выходным","Парковка на пике дня переполнена"],
+    warn:["Дресс-код: плечи и колени закрыты — могут не пустить","Внутри запрещены фото"],
+    gems:["Нижний монастырь (2 км ниже) тоже стоит посетить — там очень тихо","От Нижнего к Верхнему есть пешая тропа через лес — паломники ходят часами, вы пройдёте за час"]},
+
+  {id:8,rank:8,tier:"S",name:"Свети-Стефан (открывается 01.07.2026!)",cat:"Море · Икона",coords:{lat:42.2585,lng:18.8917},photoTag:"sveti,stefan,island",
+    desc:"Великая новость: после 5 лет закрытия остров-отель Aman открывается 1 июля 2026. Пляжи King's и Sveti Stefan Beach снова бесплатны для всех. Сам остров — только для гостей отеля.",
+    pros:["Самый узнаваемый вид Черногории","Пляжи у острова — наконец доступны бесплатно","С обзорной площадки на трассе — открыточный кадр"],
+    cons:["На сам остров не пускают","Парковка дорогая (€5-7)"],
+    warn:["В первый сезон после открытия — будет много 'инфлюенсеров' и толп","На дороге у смотровой все паркуются прямо у обочины, опасно"],
+    gems:["Парк Милочер рядом — пляж и тропа вдоль воды, тише","Лучший вид — со смотровой выше отеля Adrović, не у самой дороги"]},
+
+  {id:9,rank:9,tier:"S",name:"Скадарское озеро + Павлова Страна",cat:"Озеро · Природа",coords:{lat:42.3056,lng:19.0917},photoTag:"skadar,lake,viewpoint",
+    desc:"Подковообразный изгиб реки Црноевича в Скадарское озеро — самый известный пейзаж Черногории после Котора. Лучше делать лодочный тур из Риеки Црноевича, а не из Вирпазара.",
+    pros:["Лодочный тур €30-50/чел, 2-3 часа","Реальные пеликаны и кувшинки","Виноградные деревни рядом"],
+    cons:["Из Вирпазара — массовый туризм","В июле воды ниже, лодки идут медленнее"],
+    warn:["Не рвите кувшинки — штраф €100, проверяют","Сильно мажьтесь — комаров над водой много"],
+    gems:["Skadar Lake Family Resort — стартовая точка лучших лодочников","Деревня Карук с террасным виноградником над озером — заехать на закат"]},
+
+  {id:10,rank:10,tier:"S",name:"Цетине — старая королевская столица",cat:"Город · История",coords:{lat:42.3911,lng:18.9239},photoTag:"cetinje,montenegro,royal",
+    desc:"Музей короля Николы, монастырь с реликвиями (рука Иоанна Крестителя), бывшие посольства XIX века. Часто пропускают, и зря — это историческое сердце страны.",
+    pros:["Все музеи в шаговой доступности","Билеты дешёвые (€3-5 каждый)","Прохладнее побережья (на 670 м)"],
+    cons:["Город тихий, ночной жизни нет","Музеи закрываются в 17:00"],
+    warn:["По понедельникам многие музеи закрыты — проверьте перед поездкой"],
+    gems:["Билярда — резиденция Негоша с круговой галереей","Cafe Gradska — лучший кофе в старом городе, тут собиралась богема XIX века"]},
+
+  // ============== TIER A — ОЧЕНЬ СТОИТ (11-20) ==============
+  {id:11,rank:11,tier:"A",name:"Старый Бар (Stari Bar)",cat:"Развалины · История",coords:{lat:42.0966,lng:19.1376},photoTag:"stari,bar,ruins",
+    desc:"Заброшенный средневековый город-крепость, разрушенный в 1878 г. Атмосферно, мало туристов, узкие улочки в развалинах среди оливковых рощ. Сильно недооценено.",
+    pros:["Вход €5, не толпы","Можно лазить почти везде","Тысячелетние оливки вокруг"],
+    cons:["Под солнцем нет тени — экстремально в полдень","Иди в обуви: камни острые"],
+    warn:["На стенах нет ограждений — следите за ногами","Не оставляйте машину 'просто на обочине' — увозят"],
+    gems:["Деревня Подград у подножия — лучшее место на обед","Дерево оливы в 2000 лет (Stara Maslina) в 1 км — старейшая олива Адриатики"]},
+
+  {id:12,rank:12,tier:"A",name:"Пивский каньон + озеро",cat:"Природа · Дорога",coords:{lat:43.2278,lng:18.8408},photoTag:"piva,lake,canyon",
+    desc:"Изумрудно-зелёное водохранилище, дорога через 56 туннелей. Драматичнее Тары, и здесь почти никого. Один из лучших драйвов в Европе, серьёзно.",
+    pros:["Бесплатно, никого","Виа феррата для любителей","Длинная (~60 км) красивая дорога"],
+    cons:["Туннели не освещены, узкие","Заправок нет вовсе на участке"],
+    warn:["Включайте фары даже днём","Не рекомендуется в дождь — обвалы случаются"],
+    gems:["Кафе Stari Most на старом каменном мосту — настоящее","Купание прямо в озере у моста Плужине — вода чистейшая, +18°C даже в августе"]},
+
+  {id:13,rank:13,tier:"A",name:"Биоградска Гора",cat:"Лес · Озеро",coords:{lat:42.9047,lng:19.6022},photoTag:"biogradska,gora,forest",
+    desc:"Один из последних реликтовых лесов Европы, озеро Биоград. Прохлада, чистый воздух, спокойная прогулка вокруг озера (3,5 км). Хорошее дополнение к Дурмитору.",
+    pros:["Лёгкие тропы для всех","Прокат лодок и каяков","Прохладно в любую жару"],
+    cons:["Если уже был Дурмитор — впечатлений меньше","Платный вход €3"],
+    warn:["Комары после дождя — берите спрей"],
+    gems:["Колашин в 20 мин — городок для ночёвки, традиционные рестораны","Тропа к ледниковому озеру Pešića — мало кто доходит, 2 часа"]},
+
+  {id:14,rank:14,tier:"A",name:"Кочкина петля + деревня Негуши",cat:"Дорога · Еда",coords:{lat:42.4081,lng:18.8650},photoTag:"njegusi,prosciutto,road",
+    desc:"Деревня Негуши — родина черногорского пршута и сыра. Дегустация копчёного окорока с винами в семейных дымокурнях. По дороге смотровая на Боку — фотография №1 у всех в инстаграме.",
+    pros:["Реальная еда, не туристическая подделка","Цены адекватные (€8-15 за тарелку)","По пути на Ловчен"],
+    cons:["Сама деревня крошечная","Парковка узкая"],
+    warn:["В горячее время дня все автобусы тут — приезжайте рано","Не покупайте 'домашнюю ракию' с рук — может быть подделкой"],
+    gems:["Pršutara Žuželjević — лучший пршут (не самый известный, но самый честный)","Konoba Kod Pera na Bukovicu — местные едят сами"]},
+
+  {id:15,rank:15,tier:"A",name:"Голубая пещера (Plava Špilja)",cat:"Море · Лодка",coords:{lat:42.4214,lng:18.5142},photoTag:"blue,cave,montenegro",
+    desc:"Морская пещера у входа в Боку, попадаешь на катере, можно купаться внутри в неоновой воде. Полудневный тур (€25-40) из Херцег-Нови или Жанице. Цвет реально магический.",
+    pros:["Купание внутри пещеры — особое","Часто комбинируется с Мамулой и Жаничем","2-3 часа всего"],
+    cons:["В сезон — очередь катеров на вход","Только в спокойную погоду"],
+    warn:["Очки маски обязательны если хотите видеть рыб","Не идите на самые дешёвые катера — переполнены"],
+    gems:["Жанич бич рядом — лучший галечный пляж в окрестностях","У входа в пещеру вода — 4-5 м глубина, прыгайте с лодки"]},
+
+  {id:16,rank:16,tier:"A",name:"Херцег-Нови Старый город",cat:"Город · Море",coords:{lat:42.4531,lng:18.5374},photoTag:"herceg,novi,oldtown",
+    desc:"Ступенчатый город с двумя крепостями (Канли Кула, Форте Маре). Тише и аутентичнее Котора, хорошая база для морских экскурсий, отличные виды. Часто пропускают — зря.",
+    pros:["Меньше круизных туристов","Лестницы 'Малые Афины' — фотогенично","Хорошие набережные для прогулок"],
+    cons:["Очень много ступеней — не для всех","Парковка в центре сложная"],
+    warn:["В августе тут много сербов — городок переполняется","Не путайте с туристическим 'Игало' рядом — там пляж скучный"],
+    gems:["Бельевидер кафе на крепости — закаты","Зеленая аптека (Stara Apoteka) — действующая с 1851 года"]},
+
+  {id:17,rank:17,tier:"A",name:"Проклетье (Plav, Gusinje)",cat:"Дикие горы",coords:{lat:42.5994,lng:19.9450},photoTag:"prokletije,mountains,montenegro",
+    desc:"'Проклятые горы' — самые дикие горы страны. Озеро Плав, водопад Гринчар, источник Али Паша. В июле — идеальные температуры. Туристов — единицы.",
+    pros:["Никаких толп вообще","Альпийская природа без билетов","Реальное приключение"],
+    cons:["Дороги хуже, инфраструктура скуднее","Минимум 2 дня нужно, чтобы добраться и оценить"],
+    warn:["Связь местами пропадает — скачайте офлайн карты","Бензин только в Плаве — заправляйтесь до"],
+    gems:["Источник Али Паша в Гусинье — десятки родников в одном месте","Тропа к Зеленому озеру (Zeleni vir) — открытка"]},
+
+  {id:18,rank:18,tier:"A",name:"Липская пещера",cat:"Пещера · Прохлада",coords:{lat:42.3919,lng:18.9928},photoTag:"lipa,cave,montenegro",
+    desc:"Крупнейшая открытая для туристов пещера в Черногории. Экскурсия 60 мин на поезде/пешком, +8°C внутри — спасение от жары. Между Цетине и Скадарским озером.",
+    pros:["Спасение от жары летом","Хорошо организовано","Билет €15-23"],
+    cons:["Очень популярно — бронируйте слот","60 мин может показаться долгим"],
+    warn:["Возьмите тёплую кофту — внутри реально холодно","Каблуки не пройдут"],
+    gems:["Совмещайте с Цетине в один день","Маленький ресторанчик на въезде делает отличный домашний айвар"]},
+
+  {id:19,rank:19,tier:"A",name:"Каякинг по Бока-Которской бухте",cat:"Активно · Море",coords:{lat:42.4247,lng:18.7712},photoTag:"kayak,boka,kotor",
+    desc:"Полудневный тур из Котора (€35-45). Это лучший способ увидеть бухту изнутри без круизных кораблей. Спокойная вода, безопасно, виды совершенно другие.",
+    pros:["Бухта без круизников — иначе невозможно","Группы небольшие","Включает обед или закуски обычно"],
+    cons:["3-4 часа на воде — гребите много","Под жарким солнцем — кожа сгорает"],
+    warn:["Sunblock и шляпа обязательно","Не оставляйте телефон в каяке без водозащитного чехла"],
+    gems:["Тур до острова Naval базы (Lazaret) — посещают редко","Spirit Yachting и Kayak Montenegro — рекомендуемые операторы"]},
+
+  {id:20,rank:20,tier:"A",name:"Фашинада в Перасте · 22 июля",cat:"Событие · Уникум",coords:{lat:42.4869,lng:18.6989},photoTag:"fasinada,perast,boats",
+    desc:"Если совпадёте — большая удача. Уникальный местный обряд: на закате мужчины Пераста плывут на лодках, нагруженных камнями, к острову Богоматери на Скале, поют традиционные песни и сбрасывают камни.",
+    pros:["Длится 600 лет","Один из последних настоящих живых ритуалов на Адриатике","Бесплатно — на берегу"],
+    cons:["Только один день в году","Пераст переполнен — жильё бронируйте за 3 месяца"],
+    warn:["Если едете специально 22 июля — резервируйте отель уже сейчас","С самой воды не видно — смотрите с набережной"],
+    gems:["Лучшая точка наблюдения — с крыши Hotel Conte","Ужин после обряда — все рестораны полные, бронируйте"]},
+
+  // ============== TIER B — С ОГОВОРКАМИ (21-30) ==============
+  {id:21,rank:21,tier:"B",name:"Старый город Будвы",cat:"Город · Туристы",coords:{lat:42.2778,lng:18.8378},photoTag:"budva,oldtown,citadel",
+    desc:"Сам по себе — красивая венецианская крепость с тремя церквями. Проблема: вокруг — туристический ад. Зайдите на 2 часа утром, не базируйтесь там.",
+    pros:["Архитектура — действительно красивая","На стенах цитадели — приятно на закате","Билеты на цитадель €5"],
+    cons:["Окружение — самое крикливое в стране","Цены в ресторанах в 2-3 раза выше реальных","Slovenska plaža — ужас"],
+    warn:["Не ешьте в первой линии набережной — переплата","Парковки в центре нет, дальние стоят €5-10"],
+    gems:["Ричардова Глава пляж под цитаделью — узкий, но красивее","Konoba Stari Grad — в самом городе, цены ещё нормальные"]},
+
+  {id:22,rank:22,tier:"B",name:"Каньонинг в каньоне Невидио",cat:"Адреналин",coords:{lat:42.9844,lng:19.0972},photoTag:"nevidio,canyoning,montenegro",
+    desc:"'Невидимый' каньон — для физически подготовленных пар это драйв уровня 'запомнится навсегда'. Прыжки в воду, спуск по верёвкам, плавание в холодной воде ~10°C.",
+    pros:["Реально особое приключение","Гид всё делает за вас (страховка, инструкции)","€100-130 включая всё снаряжение"],
+    cons:["Не для всех — нужна базовая форма","Вода ледяная даже в августе","5-6 часов в каньоне"],
+    warn:["С проблемами с сердцем/коленями — нет","Обязательно нормальный гид (Outdoor Montenegro), не самый дешёвый"],
+    gems:["Перед каньоном обычно завтрак в местной семье — частая опция","После каньона — горячий ракий-туреджёла традиционный"]},
+
+  {id:23,rank:23,tier:"B",name:"Смотровая Чуревац",cat:"Виды · Тара",coords:{lat:43.1556,lng:19.1808},photoTag:"curevac,tara,canyon",
+    desc:"Самый драматичный вид на каньон Тары, мало кто доезжает. От Жабляка ~30 минут на машине, последний участок — гравийка. Если уже в Дурмиторе — сделайте.",
+    pros:["Видов лучше нет","Бесплатно","Малолюдно даже в сезон"],
+    cons:["Последние 4 км — плохая грунтовка","Только для дневного света"],
+    warn:["На самой смотровой нет ограждений — обрыв 1300 м","Не ездите в дождь — грязь"],
+    gems:["По дороге обратно — летние пастушьи 'катуны' с домашним сыром","Можно совместить с озером Сушица (5 км)"]},
+
+  {id:24,rank:24,tier:"B",name:"Дурмиторское кольцо (P14)",cat:"Дорога · Горы",coords:{lat:43.1167,lng:19.0292},photoTag:"durmitor,ring,road",
+    desc:"85 км кольцевая дорога вокруг массива. Включает Седло (перевал 1907 м), деревню Трса, водопады. Целый день за рулём, но это один из великих горных драйвов Европы.",
+    pros:["Платить ничего не надо","Виды на каждом повороте","Можно соединить с Боботов Кук через перевал Седло"],
+    cons:["Узкие участки, разъехаться с фурой невозможно","Бензина на трассе нет"],
+    warn:["Заправляйтесь в Жабляке до старта — потом 85 км без АЗС","С прицепом или большой машиной — не суйтесь"],
+    gems:["В деревне Трса — катун с лучшим жмаранцем (молоком) и сыром","Перевал Седло — стоянка для запуска дрона, виды на массив 360°"]},
+
+  {id:25,rank:25,tier:"B",name:"Ульцинь + Велика Плажа",cat:"Юг · Албанское",coords:{lat:41.9292,lng:19.2244},photoTag:"ulcinj,beach,velika",
+    desc:"Самая южная точка, османская и албанская атмосфера. 12 км песчаного пляжа (на Адриатике это редкость). Слабо развитая инфраструктура, не для гламура, но самобытно.",
+    pros:["Длинный песчаный пляж — редкость","Цены ниже, чем в центре страны","Аутентичная албанская кухня"],
+    cons:["От Котора 2,5 часа в одну сторону","Туристическая инфраструктура — простая","Местами замусорено"],
+    warn:["По-русски не везде понимают — английский или немецкий","Купание в реке Бояне — осторожно с течением"],
+    gems:["Старый город Ульциня — крошечный, но красивый, и почти пустой","Pier Side — кайтсёрфинг и хорошие закаты"]},
+
+  {id:26,rank:26,tier:"B",name:"Ада Бойана",cat:"Граница · Природа",coords:{lat:41.8552,lng:19.3494},photoTag:"ada,bojana,montenegro",
+    desc:"Речной остров на границе с Албанией, рыбные рестораны на сваях над водой. Известен нудистскими пляжами и кайтсёрфингом. Совершенно особое место.",
+    pros:["Нигде такого больше нет","Рыба свежая, прямо из реки","Закаты — отдельный жанр"],
+    cons:["Час от Бара","Часть пляжей — официально нудистские","Жара на песке безжалостная"],
+    warn:["Вода в реке холоднее моря — резкий контраст","Не оставляйте машину 'на дороге' — могут пробить колесо"],
+    gems:["Ресторан Miško на сваях — старейший","Восход с пляжа — пустой берег, только рыбаки"]},
+
+  {id:27,rank:27,tier:"B",name:"Букумирское озеро (Комови)",cat:"Дикое озеро",coords:{lat:42.6611,lng:19.7150},photoTag:"bukumirsko,lake,komovi",
+    desc:"Высокогорное озеро в Комовских горах (~1450 м). Мало кто знает, никаких толп. Альтернатива Чёрному озеру для тех, кто хочет дикой природы. Дорога — последние 6 км трудные.",
+    pros:["Реальная тишина","Виды на массив Комови","Можно искупаться в чистой воде"],
+    cons:["Дорога — серьёзно плохая (грунтовка)","Никаких сервисов вообще"],
+    warn:["Только на машине с высоким просветом — не на седане","Связи нет — скажите кому-то куда поехали"],
+    gems:["Катун Štavna в 3 км — летняя пастушеская деревня, можно купить сыр","Тропа на гору Комови (3-4 часа) — топ-3 виды в стране"]},
+
+  {id:28,rank:28,tier:"B",name:"Римские мозаики в Рисане",cat:"Археология",coords:{lat:42.5117,lng:18.6961},photoTag:"risan,mosaic,roman",
+    desc:"Маленький археологический сайт (€2). Мозаики II века с Гипносом — необычны, но больше для тех, кто любит античность. 30-минутная остановка по пути.",
+    pros:["Дёшево","Быстро","По пути из Котора в Пераст"],
+    cons:["Маленький объект","Может быть закрыт в межсезонье"],
+    warn:["Открыто только до 17:00, проверяйте"],
+    gems:["Сам Рисан — старейшее поселение бухты, эпоха иллирийцев","Источник Сопот рядом — вода из скалы"]},
+
+  {id:29,rank:29,tier:"B",name:"Винодельня Шипчаник (Plantaže)",cat:"Вино · Бункер",coords:{lat:42.3953,lng:19.2256},photoTag:"sipcanik,wine,montenegro",
+    desc:"Дегустация Vranac и Krstač в винном погребе, расположенном в туннеле бывшего военного аэродрома (антисоветский бункер). Антураж необычный.",
+    pros:["Антураж бункера — действительно особый","Дегустация €15-25","Понятно даже без винного опыта"],
+    cons:["Чуть туристический формат","От Подгорицы 20 мин — заехать просто, остаться сложно"],
+    warn:["Не садитесь за руль после дегустации — серьёзно, всем хватает","Бронируйте слот заранее"],
+    gems:["Семейные винодельни Црмницы дешевле и аутентичнее (см. №40)","Чёрный Vranac Pro Corde — флагман, попросите его"]},
+
+  {id:30,rank:30,tier:"B",name:"Sea Dance Festival · середина июля",cat:"Музыка · Фестиваль",coords:{lat:42.2861,lng:18.7811},photoTag:"sea,dance,festival",
+    desc:"Крупный электронный фестиваль на пляже Яз. Если в Будве с 15-19 июля — попадёте. Если не интересует — в эти дни обходите Будву стороной.",
+    pros:["Один из крупнейших фестивалей Европы","Хорошие звёздные артисты","На пляже"],
+    cons:["Цены на жильё подскакивают вдвое","Шум — слышно за 5 км","Толпы"],
+    warn:["Если не идёте — не базируйтесь в Будве в эти даты","Раньше брони — реально нужно"],
+    gems:["Тихий день на соседнем пляже Трстено — фест не достаёт","Вечеринки после в клубе Top Hill — там собирается сербская богема"]},
+
+  // ============== TIER C — ВТОРОЙ КРУГ (31-50) ==============
+  {id:31,rank:31,tier:"C",name:"Морачский монастырь",cat:"Религия · Фрески",coords:{lat:42.7783,lng:19.3925},photoTag:"moraca,monastery,frescoes",
+    desc:"XIII век, фрески уровня сербской средневековой живописи (особенно 'Ворон кормит пророка Илию'). Стоит над рекой Морача в живописнейшем ущелье. По дороге Подгорица — Колашин.",
+    pros:["Тишина, монахи, никаких толп","Фрески уровня музея","Можно совместить с дорогой на север"],
+    cons:["В стороне от других достопримечательностей","Времени работы стоит уточнить"],
+    warn:["Внутри — фото запрещены","Дресс-код"],
+    gems:["В соседнем здании — небольшой музей с иконами","Гнездо хищников видно из окон церкви"]},
+
+  {id:32,rank:32,tier:"C",name:"Жабьяк Црноевича",cat:"Развалины · Скадар",coords:{lat:42.3567,lng:19.0633},photoTag:"zabljak,crnojevica,fortress",
+    desc:"Заброшенная средневековая крепость XV века на скале посреди равнины у Скадарского озера. Можно подняться, всё в плюще, виды на озеро. 30 минут от Подгорицы.",
+    pros:["Атмосферно","Почти никого","Бесплатно (или символические €2-3)"],
+    cons:["Дорога последние 2 км плохая","Подъём не для всех — крутая тропа"],
+    warn:["Скользкая в дождь","Змеи водятся — смотрите под ноги"],
+    gems:["Местный гид Раджевич живёт у подножия — даст детали бесплатно","Соседняя деревня Доде — типичный балканский кадр"]},
+
+  {id:33,rank:33,tier:"C",name:"Хребет Врмац (хайк)",cat:"Поход · Виды",coords:{lat:42.4181,lng:18.7644},photoTag:"vrmac,ridge,kotor",
+    desc:"Гребень между Которским и Тиватским заливами. С обоих сторон бухты у ног, на вершине — заброшенный австро-венгерский форт. Поход 4-5 часов или подъехать к форту по тропе.",
+    pros:["Виды обеих бухт сразу","Почти никого","Старый форт интересно полазить"],
+    cons:["В жару — серьёзный хайк","Тени мало"],
+    warn:["Берите 2 литра воды на человека минимум","Без хорошей обуви — нет"],
+    gems:["Австро-венгерский форт-туннель — можно зайти внутрь (фонарик нужен!)","Спуск к Тивату по другой тропе — кольцевой маршрут"]},
+
+  {id:34,rank:34,tier:"C",name:"Полуостров Луштица",cat:"Бухты · Скрытое",coords:{lat:42.3856,lng:18.6253},photoTag:"lustica,peninsula,beach",
+    desc:"Скрытые бухты с галечными пляжами (Жаниче, Миришта), оливковые рощи, заброшенные австро-венгерские форты. Деревня Розе — рыбные конобы. Сюда обычно попадают на лодке.",
+    pros:["Гораздо тише Будвы","Конобы у самой воды","Можно проехать на машине по всему полуострову"],
+    cons:["Дороги местами очень узкие","Парковки на пляжах малы"],
+    warn:["Не пытайтесь к Mamula Island пешком — только лодкой","С трейлером или авто-домом — не суйтесь, серьёзно"],
+    gems:["Пляж Облатно — два галечных бухты, тихий","Деревня Радовичи (восточнее) — олейная давильня, можно купить настоящее оливковое масло"]},
+
+  {id:35,rank:35,tier:"C",name:"Озеро Трновачко (граница с Боснией)",cat:"Поход · Серьёзный",coords:{lat:43.2939,lng:18.7456},photoTag:"trnovacko,lake,heart",
+    desc:"Сердцевидное горное озеро в массиве Маглич. Один из самых красивых пейзажей Балкан. Серьёзный хайк (~6-7 часов туда-обратно) или подъезд через Боснию.",
+    pros:["Если дойдёте — впечатления навсегда","Озеро действительно в форме сердца","Совершенно дикое место"],
+    cons:["Серьёзный полный день хайка","С границы Боснии быстрее (но виза?)","Минимум промежуточная физическая форма"],
+    warn:["Только в группе или с гидом — медведи в районе","Связь практически нет","Без офлайн карты не суйтесь"],
+    gems:["Можно ночевать в палатке у озера (бесплатно)","Гид Никола из Плужине знает все тропы — €70 на двоих"]},
+
+  {id:36,rank:36,tier:"C",name:"Пивский монастырь",cat:"Религия · История",coords:{lat:43.3681,lng:18.8425},photoTag:"piva,monastery,montenegro",
+    desc:"Уникальная история: в 1970-х при строительстве плотины весь монастырь XVI века был разобран по камню и собран заново выше. Фрески XVI века. По дороге через Пивский каньон.",
+    pros:["Уникальная история переноса","По пути через каньон Пивы","Прохладно внутри"],
+    cons:["Маленький","Может быть закрыт на службу"],
+    warn:["Дресс-код"],
+    gems:["Открыт обычно до 18:00","Старая фотография с переносом монастыря — в холле"]},
+
+  {id:37,rank:37,tier:"C",name:"Монастырь Савина (Херцег-Нови)",cat:"Религия · Море",coords:{lat:42.4533,lng:18.5567},photoTag:"savina,monastery,herceg",
+    desc:"Старейший монастырь побережья (XI век), три церкви на одном дворе среди кипарисов, виды на залив. Тихо, действующий, всегда открыт. 10 минут от центра Херцег-Нови.",
+    pros:["Бесплатно","10 минут от центра","Виды на бухту"],
+    cons:["В сезон бывают группы","Маленький"],
+    warn:["Дресс-код строгий"],
+    gems:["Подвал монастыря — продают своё вино и ракию","Малая церковь чуть выше — обычно совсем пустая"]},
+
+  {id:38,rank:38,tier:"C",name:"Ледяная пещера Дурмитора",cat:"Пещера · Поход",coords:{lat:43.1278,lng:19.0489},photoTag:"ice,cave,durmitor",
+    desc:"Внутри Дурмитора, +0...+2°C круглый год, ледяные сталагмиты. Идти 2-3 часа от Седла. Если уже делаете Боботов Кук — добавьте.",
+    pros:["Реальный лёд в июле","Возможность совмещения с Боботов Кук","Бесплатно"],
+    cons:["Серьёзный хайк к ней","Без фонаря — внутрь не зайдёшь","Узкий вход (1 м)"],
+    warn:["Не идите без хорошей обуви — скользко","С клаустрофобией — нет","Берите хедлампу"],
+    gems:["Прямо у входа в пещеру — один из самых красивых видов на массив","Можно совместить с озером Сушица"]},
+
+  {id:39,rank:39,tier:"C",name:"Пещера Джаловича (Bijelo Polje)",cat:"Пещера · Север",coords:{lat:43.0036,lng:19.7517},photoTag:"djalovica,cave,bijelo",
+    desc:"Крупнейшая пещерная система Черногории, ~17 км подземных ходов с подземной рекой. Открытая для туристов часть — пока скромная (~200 м), идут работы по обустройству.",
+    pros:["Малоизвестно","Прохладно","Длиннейшая пещера страны"],
+    cons:["Туристическая часть пока маленькая","Далеко от других мест"],
+    warn:["Лучше уточнять часы работы заранее","Дорога к ней — асфальт, но узко"],
+    gems:["Перед пещерой — каньон реки Биштрица, красиво","В Биело-Поле — старый базар XIX века, мечеть Шахович"]},
+
+  {id:40,rank:40,tier:"C",name:"Винный регион Црмница",cat:"Вино · Деревня",coords:{lat:42.1750,lng:19.1500},photoTag:"crmnica,wine,village",
+    desc:"Между Скадарским озером и Баром. Маленькие семейные винодельни. Vranac и автохтонный белый Krstač прямо у виноградника, с домашним пршутом. Намного аутентичнее Шипчаника.",
+    pros:["Реальные деревенские винодельни","Цены символические (€10-20 за дегустацию)","Хозяева сами проводят"],
+    cons:["Нужно договариваться заранее","Языковой барьер местами"],
+    warn:["Не садитесь за руль после","Дороги к виноградникам узкие"],
+    gems:["Семья Марковичей в деревне Лимляни — лучший Vranac","Pršutara Lazović — лучший пршут региона"]},
+
+  {id:41,rank:41,tier:"C",name:"Муричи + остров Бешка (Скадар)",cat:"Пляж · Озеро",coords:{lat:42.1817,lng:19.2606},photoTag:"murici,beach,skadar",
+    desc:"Единственный нормальный пляж на самом Скадарском озере, среди оливковых рощ XVII века. Напротив — остров Бешка с двумя церквями XIV века. Малолюдно.",
+    pros:["Купание в чистом озере","Тихо","Оливковые рощи историческое","Лодки на остров за €5-10"],
+    cons:["От Вирпазара — серпантин 30 мин","Кафе всего пара"],
+    warn:["Вода пресная — после купания ополоснитесь, чтобы не сохло","Комары вечером"],
+    gems:["Местные катают на лодке всего за €5","Старая базилика на Бешке — заброшенная, но открыта"]},
+
+  {id:42,rank:42,tier:"C",name:"Цетиньский монастырь",cat:"Религия · Реликвии",coords:{lat:42.3906,lng:18.9239},photoTag:"cetinje,monastery,montenegro",
+    desc:"В самом Цетине, главная святыня страны. Хранятся рука Иоанна Крестителя и частица Креста Господня. Реликвии редкого ранга для православия.",
+    pros:["В центре Цетине, легко зайти","Бесплатно","Святыни мирового значения"],
+    cons:["Реликвии показывают не всегда","Могут быть службы"],
+    warn:["Дресс-код строгий — закрытые колени и плечи","Фото внутри запрещены"],
+    gems:["В музее монастыря — копия Октоиха 1494 г, первой печатной книги Юго-Восточной Европы","Тропа вокруг монастыря — мало кто ходит"]},
+
+  {id:43,rank:43,tier:"C",name:"Ульцинские солончаки (фламинго)",cat:"Птицы · Природа",coords:{lat:41.9528,lng:19.3092},photoTag:"ulcinj,salt,flamingo",
+    desc:"В июле-августе здесь останавливаются стаи фламинго, пеликанов и других перелётных птиц — главная орнитологическая точка Адриатики.",
+    pros:["Реальные фламинго и пеликаны","Уникальный пейзаж соляных прудов","Тихо"],
+    cons:["Только с гидом или разрешением","Жара экстремальная","Нужны бинокли"],
+    warn:["Без шляпы и воды — тепловой удар","Активность птиц лучше утром"],
+    gems:["Ulcinj Birding Club организует туры за €15","Соседние лиманы реки Бояны — пеликаны почти ручные"]},
+
+  {id:44,rank:44,tier:"C",name:"Озёра Дурмитора (Враже, Змияно)",cat:"Малые озёра",coords:{lat:43.1500,lng:19.0833},photoTag:"durmitor,small,lakes",
+    desc:"Маленькие тихие озёра в 30-40 минутах ходьбы от Чёрного озера. Цвет воды — глубокий синий. Когда на Чёрном озере туристов как на пляже Будвы, тут можно реально побыть в тишине.",
+    pros:["Лёгкий хайк по тропе","Цвет воды эффектный","Бесплатно"],
+    cons:["Сложно найти без карты","Малы — не для долгого пребывания"],
+    warn:["Тропа маркирована, но карту имейте","Не плавайте — вода ледяная"],
+    gems:["Маленькое озеро Зминьево — глубокий ультрамарин","На обратном пути ресторан Полянка у Чёрного озера"]},
+
+  {id:45,rank:45,tier:"C",name:"Старый Петровац + Лучице",cat:"Городок · Пляжи",coords:{lat:42.2056,lng:18.9456},photoTag:"petrovac,beach,lucice",
+    desc:"Маленький старый городок с венецианской цитаделью, два более тихих пляжа рядом (Лучице, Булярица). Намного спокойнее Будвы, при этом 20 минут от неё.",
+    pros:["Намного спокойнее Будвы","Хорошие пляжи рядом","Цены адекватные"],
+    cons:["Сам городок маленький","Ночной жизни почти нет"],
+    warn:["В пик сезона тоже бывает шумно — но не так как Будва","Море тут глубже сразу"],
+    gems:["Островки Святой Недели и Катич — короткое заплыв на доске","Konoba Bonaca в Петроваце — местные едят сами"]},
+
+  {id:46,rank:46,tier:"C",name:"Деревня Бигово",cat:"Деревня · Рыба",coords:{lat:42.3700,lng:18.6797},photoTag:"bigovo,fishing,village",
+    desc:"Рыбацкое село на дороге Котор — Тиват, мимо которого все едут. Гавань с лодками, конобы со свежей рыбой, никаких отелей. Поужинать на закате — одно из лучших решений на побережье.",
+    pros:["Реальная рыба прямо с лодок","Никаких туристов","Закаты"],
+    cons:["Только ради ужина","Других сервисов нет"],
+    warn:["Резервируйте ресторан заранее в выходные","Лучшие рестораны не работают в межсезонье"],
+    gems:["Konoba Krš + Bigovo Resort — лучшие","Морская гарпунная рыба — кальмары, лиманда, скумбрия"]},
+
+  {id:47,rank:47,tier:"C",name:"Смотровая Хайдучке Врата над Рисаном",cat:"Виды · Дорога",coords:{lat:42.5403,lng:18.7058},photoTag:"hajducka,vrata,viewpoint",
+    desc:"Серпантин от Рисана наверх в горы, виды на всю Боку под другим углом, чем с Ловчена. Дорога асфальт, малознакомая туристам. 'Тот самый кадр' Боки без чужих голов.",
+    pros:["Малознакомо туристам","Уникальный угол на Боку","Бесплатно"],
+    cons:["Серпантин крутой","Тени нет"],
+    warn:["В дождь серпантин скользкий","С прицепом — нет"],
+    gems:["Деревня Кривошие выше — пастушеская, тихая","Можно соединить с заходом в Поляну"]},
+
+  {id:48,rank:48,tier:"C",name:"Колашин",cat:"Горный городок",coords:{lat:42.8197,lng:19.5167},photoTag:"kolasin,mountain,town",
+    desc:"Горный городок в окружении Биоградска Гора, Синяевины и Беласицы. База для пеших троп, в июле +22°C. Хороший вариант ночёвки между побережьем и Жабляком.",
+    pros:["Прохладно","Хорошая точка между побережьем и севером","Зимой это горнолыжный курорт"],
+    cons:["Сам по себе скромный","В сезон не очень оживлён"],
+    warn:["Канатка работает не каждый день — проверьте"],
+    gems:["Гора Беласица в 30 мин — пасторальная альпийская","Hotel Bianca — местные едят, не туристический"]},
+
+  {id:49,rank:49,tier:"C",name:"Плевля + мечеть Хусейна-паши",cat:"Османское · Архитектура",coords:{lat:43.3567,lng:19.3592},photoTag:"husein,pasha,mosque",
+    desc:"Османская мечеть XVI века с самым высоким минаретом на Балканах того времени, внутри — росписи и оттоманская каллиграфия высокого уровня. Город Плевля промышленный, но мечеть — серьёзный памятник.",
+    pros:["Действительно красивая мечеть","Малоизвестно","По пути к Тариному мосту"],
+    cons:["Сам город Плевля непрезентабельный","В стороне"],
+    warn:["Дресс-код — обязательно","Снять обувь перед входом"],
+    gems:["В соседнем хане Боснич можно поесть бурека","Часовая башня XVI века рядом"]},
+
+  {id:50,rank:50,tier:"C",name:"Дорога Цетине → Риека Црноевича",cat:"Дорога · Скрытое",coords:{lat:42.3667,lng:19.0289},photoTag:"cetinje,road,montenegro",
+    desc:"Не туристическая, но это самая красивая короткая дорога в стране после Ловченского серпантина. От Цетине через горы вниз к Скадарскому озеру через каменные деревни. Виды постоянные.",
+    pros:["Бесплатно","Мало машин","На машине ~1 час, можно с остановками"],
+    cons:["Узко","GPS иногда теряет"],
+    warn:["Не в дождь — серпантин","Заправок нет, заправляйтесь в Цетине"],
+    gems:["Деревня Углень — каменные дома XIX века","Смотровая на Риеку Црноевича сверху — самый известный 'тот самый кадр'"]}
+];
+
+// ============================================================ STORAGE LAYER
+// Hybrid: jsonbin.io for cross-device sync + localStorage cache
+//   Config in localStorage: {binId, masterKey}
+//   State persisted as one bin: { votes: {...}, comments: {...} }
+//   localStorage acts as offline cache and instant load
+
+const LS_STATE   = "mn_state_v1";
+const LS_CONFIG  = "mn_config_v1";
+const JSONBIN_API = "https://api.jsonbin.io/v3/b";
+const SYNC_INTERVAL_MS = 25000;       // background pull
+const SYNC_DEBOUNCE_MS = 800;         // debounce after edit
+
+let VOTES = {};
+let COMMENTS = {};
+let CONFIG = null;                     // {binId, masterKey} or null = local-only mode
+let SYNC_STATE = "idle";               // idle | syncing | synced | error | local
+let LAST_SYNC_AT = 0;
+let pushTimer = null;
+let currentCommentWho = "him";
+let activeCommentPlace = null;
+
+// ----- localStorage helpers
+function lsGet(k){ try{ return JSON.parse(localStorage.getItem(k)); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+
+// ----- Config load (URL hash takes precedence, then localStorage)
+function loadConfig(){
+  // URL hash: #config=BINID:MASTERKEY (used to share access with partner)
+  if(location.hash){
+    const m = location.hash.match(/#config=([A-Za-z0-9]+):(\S+)/);
+    if(m){
+      CONFIG = { binId: m[1], masterKey: m[2] };
+      lsSet(LS_CONFIG, CONFIG);
+      // clean the URL — don't leave the key in address bar
+      history.replaceState(null, "", location.pathname + location.search);
+      return;
+    }
+  }
+  CONFIG = lsGet(LS_CONFIG);
+}
+
+function clearConfig(){
+  CONFIG = null;
+  try{ localStorage.removeItem(LS_CONFIG); }catch(e){}
+}
+
+// ----- Remote sync
+async function fetchRemote(){
+  if(!CONFIG) return false;
+  setSyncState("syncing");
+  try{
+    const r = await fetch(`${JSONBIN_API}/${CONFIG.binId}/latest`, {
+      headers: { "X-Master-Key": CONFIG.masterKey, "X-Bin-Meta": "false" }
+    });
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    const data = await r.json();
+    // jsonbin v3 returns { record: {...}, metadata: {...} } unless meta:false
+    const state = data.record !== undefined ? data.record : data;
+    VOTES = state.votes || {};
+    COMMENTS = state.comments || {};
+    lsSet(LS_STATE, { votes: VOTES, comments: COMMENTS });
+    LAST_SYNC_AT = Date.now();
+    setSyncState("synced");
+    return true;
+  }catch(e){
+    console.warn("fetchRemote failed", e);
+    setSyncState("error");
+    return false;
+  }
+}
+
+async function pushRemoteNow(){
+  if(!CONFIG) return;
+  setSyncState("syncing");
+  try{
+    const r = await fetch(`${JSONBIN_API}/${CONFIG.binId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Master-Key": CONFIG.masterKey
+      },
+      body: JSON.stringify({ votes: VOTES, comments: COMMENTS })
+    });
+    if(!r.ok) throw new Error("HTTP " + r.status);
+    LAST_SYNC_AT = Date.now();
+    setSyncState("synced");
+  }catch(e){
+    console.warn("pushRemote failed", e);
+    setSyncState("error");
+  }
+}
+
+function schedulePush(){
+  // always cache locally immediately
+  lsSet(LS_STATE, { votes: VOTES, comments: COMMENTS });
+  if(!CONFIG){ setSyncState("local"); return; }
+  clearTimeout(pushTimer);
+  pushTimer = setTimeout(pushRemoteNow, SYNC_DEBOUNCE_MS);
+}
+
+// ----- Sync indicator UI
+function setSyncState(s){
+  SYNC_STATE = s;
+  const el = document.getElementById("sync-indicator");
+  if(!el) return;
+  const map = {
+    idle:    {dot:"#8a8073", label:"…"},
+    syncing: {dot:"#b88a2e", label:"Синхронизация…"},
+    synced:  {dot:"#4f6437", label:"Синхронизировано"},
+    error:   {dot:"#a3372a", label:"Ошибка сети"},
+    local:   {dot:"#6b6358", label:"Только локально"}
+  };
+  const m = map[s] || map.idle;
+  el.querySelector(".sync-dot").style.background = m.dot;
+  el.querySelector(".sync-label").textContent = m.label;
+}
+
+function syncStateLabel(){
+  return ({
+    idle:"ожидание",syncing:"синхронизация",synced:"синхронизировано",error:"ошибка сети",local:"только локально"
+  })[SYNC_STATE] || SYNC_STATE;
+}
+
+// ----- Combined init
+async function loadAll(){
+  loadConfig();
+  // Hydrate from localStorage cache first so UI never blocks on network
+  const cached = lsGet(LS_STATE);
+  if(cached){
+    VOTES = cached.votes || {};
+    COMMENTS = cached.comments || {};
+  }
+  if(CONFIG){
+    await fetchRemote();
+  } else {
+    setSyncState("local");
+  }
+}
+
+// background pull while page is active
+function startBackgroundSync(){
+  setInterval(() => {
+    if(!CONFIG) return;
+    if(document.hidden) return;
+    fetchRemoteAndRerender();
+  }, SYNC_INTERVAL_MS);
+}
+
+async function fetchRemoteAndRerender(){
+  const ok = await fetchRemote();
+  if(ok){
+    // Re-render only if something changed — cheap comparison via JSON
+    renderAll();
+  }
+}
+
+// kept as legacy aliases so existing callers don't break
+async function saveVotes(){ schedulePush(); }
+async function saveComments(){ schedulePush(); }
+
+// ----- JSONbin onboarding: create new bin
+async function createNewBin(masterKey){
+  const initial = { votes:{}, comments:{} };
+  const r = await fetch(JSONBIN_API, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-Master-Key": masterKey,
+      "X-Bin-Name": "Crna Gora · couple guide",
+      "X-Bin-Private": "false"   // public-read; writes still need master key
+    },
+    body: JSON.stringify(initial)
+  });
+  if(!r.ok){
+    const t = await r.text();
+    throw new Error("JSONbin отказал: " + r.status + " " + t);
+  }
+  const data = await r.json();
+  // v3 response: { record:{...}, metadata:{ id, ... } }
+  const binId = data.metadata && data.metadata.id;
+  if(!binId) throw new Error("Не получили ID нового хранилища");
+  return binId;
+}
+
+// ----- Share URL
+function buildShareUrl(){
+  if(!CONFIG) return location.href;
+  const base = location.origin + location.pathname;
+  return `${base}#config=${CONFIG.binId}:${CONFIG.masterKey}`;
+}
+
+// ============================================================ RENDER
+function gMapsUrl(p){
+  return `https://www.google.com/maps/search/?api=1&query=${p.coords.lat},${p.coords.lng}&query_place_id=${encodeURIComponent(p.name)}`;
+}
+function gImagesUrl(p){
+  return `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(p.name+" montenegro")}`;
+}
+function yImagesUrl(p){
+  return `https://yandex.com/images/search?text=${encodeURIComponent(p.name+" montenegro")}`;
+}
+// SVG art generator — beautiful editorial-style placeholders that work inside CSP-locked iframes
+// (external images are blocked; this draws inline)
+
+const THEMES = {
+  city:      ["#7a6745","#2a2014","#e8b649"],
+  bay:       ["#3a6f7f","#15323d","#7fc4b8"],
+  mountain:  ["#465260","#1a232f","#b3c5d2"],
+  lake:      ["#3f6f5b","#1a2e25","#bfe0c8"],
+  monastery: ["#6b4a35","#2a1d15","#e8b649"],
+  cave:      ["#4a3f6a","#1a1626","#b29ec8"],
+  beach:     ["#3f8092","#1d4a55","#f3cf68"],
+  wine:      ["#6b3338","#2a1010","#e8b649"],
+  village:   ["#5a6438","#252a15","#d9c688"],
+  ruin:      ["#7a6543","#2a2415","#c8b97e"],
+  event:     ["#7a3548","#2a1018","#f3cf68"],
+  road:      ["#5a4530","#2a1d15","#d9a93f"],
+  cult:      ["#5a4a3a","#251f15","#d9a93f"],
+  adv:       ["#7a4830","#2a1810","#f0a050"],
+  border:    ["#4a6b50","#1d2e22","#c8d8a8"],
+  south:     ["#7a5530","#2a1e10","#e8b649"],
+  archeo:    ["#6e5a36","#26200f","#d9c688"],
+  default:   ["#3f3f4f","#1a1a26","#d9a93f"]
+};
+
+function detectTheme(p){
+  const c = p.cat.toLowerCase();
+  if(c.includes("монастыр")||c.includes("религ")||c.includes("реликви")||c.includes("фрески")) return "monastery";
+  if(c.includes("османское")||c.includes("ислам")) return "cult";
+  if(c.includes("пещер")) return "cave";
+  if(c.includes("озер")) return "lake";
+  if(c.includes("пляж")) return "beach";
+  if(c.includes("вино")||c.includes("еда")||c.includes("гастр")) return "wine";
+  if(c.includes("деревн")||c.includes("городок")||c.includes("рыба")) return "village";
+  if(c.includes("развалин")||c.includes("археол")) return "ruin";
+  if(c.includes("драйв")||c.includes("дорога")) return "road";
+  if(c.includes("событие")||c.includes("музыка")||c.includes("фестив")) return "event";
+  if(c.includes("адренал")) return "adv";
+  if(c.includes("граница")||c.includes("эко")||c.includes("птиц")||c.includes("лес")) return "border";
+  if(c.includes("юг")||c.includes("албан")) return "south";
+  if(c.includes("гор")||c.includes("поход")||c.includes("хребет")||c.includes("вид")) return "mountain";
+  if(c.includes("бухт")||c.includes("море")||c.includes("лодка")||c.includes("активно")) return "bay";
+  if(c.includes("город")||c.includes("история")||c.includes("культур")) return "city";
+  return "default";
+}
+
+function silhouetteFor(themeKey, c2, accent){
+  switch(themeKey){
+    case "mountain":
+      return `<polygon points="0,400 70,250 130,300 200,180 270,260 340,200 410,280 480,210 560,260 600,240 600,400" fill="${c2}" opacity="0.85"/><polygon points="0,400 80,310 180,340 280,295 380,330 480,300 600,330 600,400" fill="${c2}" opacity="0.97"/>`;
+    case "bay":
+      return `<path d="M0,275 C100,250 200,310 300,280 C400,250 500,310 600,280 L600,400 L0,400 Z" fill="${c2}" opacity="0.8"/><path d="M0,320 C100,300 200,345 300,320 C400,300 500,345 600,320 L600,400 L0,400 Z" fill="${c2}" opacity="0.95"/>`;
+    case "city":
+      return `<g fill="${c2}" opacity="0.92"><rect x="20" y="250" width="50" height="150"/><rect x="72" y="200" width="65" height="200"/><polygon points="104.5,200 114.5,170 124.5,200"/><rect x="140" y="270" width="40" height="130"/><rect x="183" y="220" width="55" height="180"/><polygon points="210,220 220,185 230,220"/><rect x="241" y="240" width="35" height="160"/><rect x="278" y="200" width="60" height="200"/><polygon points="308,200 318,155 328,200"/><rect x="341" y="260" width="50" height="140"/><rect x="394" y="225" width="60" height="175"/><rect x="457" y="245" width="45" height="155"/><polygon points="479,245 487,212 495,245"/><rect x="505" y="200" width="55" height="200"/><rect x="563" y="260" width="30" height="140"/></g>`;
+    case "lake":
+      return `<polygon points="0,250 80,235 150,242 240,230 320,238 400,233 480,240 600,235 600,290 0,290" fill="${c2}" opacity="0.6"/><rect x="0" y="290" width="600" height="110" fill="${c2}" opacity="0.92"/><line x1="0" y1="290" x2="600" y2="290" stroke="${accent}" stroke-width="0.6" opacity="0.5"/><g opacity="0.18" fill="${accent}"><rect x="50" y="305" width="60" height="0.6"/><rect x="240" y="315" width="80" height="0.6"/><rect x="430" y="305" width="90" height="0.6"/></g>`;
+    case "monastery":
+      return `<g fill="${c2}" opacity="0.93"><path d="M180,400 L180,235 Q180,215 200,215 L240,215 L240,185 L255,185 L255,165 L268,165 L268,135 L278,135 L278,105 L290,105 L290,135 L300,135 L300,165 L313,165 L313,185 L328,185 L328,215 L368,215 L368,185 L383,185 L383,215 L420,215 Q440,215 440,235 L440,400 Z"/></g><line x1="285" y1="93" x2="295" y2="93" stroke="${accent}" stroke-width="2"/><line x1="290" y1="88" x2="290" y2="103" stroke="${accent}" stroke-width="2"/>`;
+    case "cave":
+      return `<path d="M0,400 L0,175 Q150,140 300,160 Q450,180 600,155 L600,400 Z" fill="${c2}" opacity="0.96"/><polygon points="100,165 110,225 120,165" fill="${c2}"/><polygon points="180,170 192,230 204,170" fill="${c2}"/><polygon points="270,160 280,210 290,160" fill="${c2}"/><polygon points="360,170 372,240 384,170" fill="${c2}"/><polygon points="450,165 460,215 470,165" fill="${c2}"/><polygon points="525,170 537,225 549,170" fill="${c2}"/>`;
+    case "beach":
+      return `<circle cx="490" cy="115" r="38" fill="${accent}" opacity="0.45"/><circle cx="490" cy="115" r="22" fill="${accent}" opacity="0.6"/><path d="M0,290 C150,280 300,295 450,285 C500,282 550,288 600,283 L600,400 L0,400 Z" fill="${c2}" opacity="0.75"/><rect x="0" y="345" width="600" height="55" fill="${accent}" opacity="0.18"/>`;
+    case "wine":
+      return `<g fill="${c2}" opacity="0.88"><path d="M180,260 Q200,235 220,260 Q235,295 220,330 L210,355 L190,355 L180,330 Q165,295 180,260 Z"/><rect x="195" y="355" width="10" height="40"/><rect x="170" y="395" width="60" height="5"/><path d="M380,260 Q400,235 420,260 Q435,295 420,330 L410,355 L390,355 L380,330 Q365,295 380,260 Z"/><rect x="395" y="355" width="10" height="40"/><rect x="370" y="395" width="60" height="5"/></g><g fill="${accent}" opacity="0.5"><ellipse cx="200" cy="285" rx="13" ry="20"/><ellipse cx="400" cy="285" rx="13" ry="20"/></g>`;
+    case "village":
+      return `<g fill="${c2}" opacity="0.9"><polygon points="60,400 60,275 110,235 160,275 160,400"/><rect x="80" y="305" width="22" height="30" fill="${accent}" opacity="0.55"/><rect x="125" y="305" width="20" height="30" fill="${accent}" opacity="0.55"/><polygon points="200,400 200,255 270,210 340,255 340,400"/><rect x="232" y="290" width="26" height="36" fill="${accent}" opacity="0.55"/><rect x="288" y="290" width="22" height="36" fill="${accent}" opacity="0.55"/><polygon points="390,400 390,285 440,250 490,285 490,400"/><rect x="415" y="315" width="20" height="28" fill="${accent}" opacity="0.55"/></g>`;
+    case "ruin":
+      return `<g fill="${c2}" opacity="0.92"><polygon points="50,400 50,235 90,215 90,195 130,215 130,275 155,275 155,165 195,185 195,165 240,195 240,400"/><polygon points="280,400 280,205 315,185 315,255 340,255 340,170 375,190 375,400"/><polygon points="420,400 420,250 470,228 470,300 510,300 510,232 555,250 555,400"/></g>`;
+    case "event":
+      return `<g fill="${accent}"><circle cx="120" cy="95" r="3"/><circle cx="200" cy="55" r="2"/><circle cx="290" cy="120" r="3"/><circle cx="380" cy="75" r="2"/><circle cx="465" cy="105" r="3"/><circle cx="540" cy="65" r="2"/><circle cx="80" cy="140" r="2"/><circle cx="350" cy="40" r="1.5"/></g><g stroke="${accent}" stroke-width="0.5" opacity="0.45"><line x1="120" y1="95" x2="105" y2="60"/><line x1="120" y1="95" x2="140" y2="65"/><line x1="290" y1="120" x2="275" y2="90"/><line x1="290" y1="120" x2="310" y2="92"/></g><path d="M0,310 C100,300 200,315 300,305 C400,295 500,318 600,308 L600,400 L0,400 Z" fill="${c2}" opacity="0.92"/>`;
+    case "road":
+      return `<path d="M-20,400 Q100,300 200,340 Q300,380 400,300 Q500,220 620,260" stroke="${c2}" stroke-width="55" fill="none" opacity="0.85"/><path d="M-20,400 Q100,300 200,340 Q300,380 400,300 Q500,220 620,260" stroke="${accent}" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="10 14"/>`;
+    case "border":
+      return `<g fill="${c2}" opacity="0.85"><path d="M0,310 Q150,290 300,310 T600,310 L600,400 L0,400 Z"/></g><g opacity="0.6" fill="${accent}"><circle cx="180" cy="290" r="3"/><path d="M170,290 Q180,278 190,290 L185,288 L175,288 Z" /><circle cx="180" cy="288" r="3.5"/><path d="M174,283 Q180,275 186,283" stroke="${accent}" stroke-width="1.2" fill="none"/></g>`;
+    case "south":
+      return `<rect x="0" y="280" width="600" height="120" fill="${c2}" opacity="0.85"/><circle cx="100" cy="100" r="25" fill="${accent}" opacity="0.4"/><path d="M65,100 L70,100 M130,100 L135,100 M100,65 L100,70 M100,130 L100,135" stroke="${accent}" stroke-width="1.5" opacity="0.5"/>`;
+    case "archeo":
+      return `<g fill="${c2}" opacity="0.9"><rect x="80" y="240" width="20" height="160"/><rect x="155" y="220" width="20" height="180"/><rect x="230" y="245" width="20" height="155"/><polygon points="80,240 100,240 110,225 90,225"/><polygon points="155,220 175,220 185,200 165,200"/><polygon points="230,245 250,245 260,230 240,230"/><rect x="60" y="385" width="280" height="15"/><rect x="420" y="240" width="20" height="160"/><rect x="495" y="225" width="20" height="175"/><polygon points="420,240 440,240 450,222 430,222"/><polygon points="495,225 515,225 525,208 505,208"/><rect x="405" y="385" width="135" height="15"/></g>`;
+    case "adv":
+      return `<polygon points="0,400 80,200 200,300 320,150 420,260 540,180 600,250 600,400" fill="${c2}" opacity="0.9"/><line x1="100" y1="180" x2="500" y2="240" stroke="${accent}" stroke-width="2" opacity="0.5" stroke-dasharray="2 5"/>`;
+    case "cult":
+      return `<g fill="${c2}" opacity="0.92"><path d="M220,400 L220,250 Q220,180 300,140 Q380,180 380,250 L380,400 Z"/><circle cx="280" cy="120" r="18" fill="none" stroke="${c2}" stroke-width="3"/></g><line x1="298" y1="100" x2="302" y2="100" stroke="${accent}" stroke-width="2"/>`;
+    default:
+      return `<polygon points="0,400 100,300 200,320 300,290 400,310 500,280 600,300 600,400" fill="${c2}" opacity="0.85"/>`;
+  }
+}
+
+function atmosphereFor(variant, accent){
+  switch(variant % 6){
+    case 0: return "";
+    case 1: // stars
+      return `<g opacity="0.75"><circle cx="120" cy="80" r="1.6" fill="#faf3e1"/><circle cx="450" cy="55" r="1" fill="#faf3e1"/><circle cx="520" cy="115" r="2" fill="#faf3e1"/><circle cx="180" cy="140" r="1.2" fill="#faf3e1"/><circle cx="350" cy="45" r="1.4" fill="#faf3e1"/><circle cx="80" cy="170" r="0.9" fill="#faf3e1"/><circle cx="280" cy="100" r="1.1" fill="#faf3e1"/></g>`;
+    case 2: // sun
+      return `<circle cx="500" cy="95" r="50" fill="${accent}" opacity="0.15"/><circle cx="500" cy="95" r="28" fill="${accent}" opacity="0.3"/>`;
+    case 3: // fog
+      return `<rect x="0" y="160" width="600" height="100" fill="#faf3e1" opacity="0.07"/><rect x="0" y="200" width="600" height="40" fill="#faf3e1" opacity="0.05"/>`;
+    case 4: // diagonal light rays
+      return `<g opacity="0.08" fill="#faf3e1"><polygon points="80,0 220,400 190,400 60,0"/><polygon points="380,0 480,400 450,400 360,0"/><polygon points="200,0 290,400 268,400 180,0"/></g>`;
+    case 5: // particles
+      return `<g opacity="0.22" fill="#faf3e1"><circle cx="100" cy="120" r="1.5"/><circle cx="200" cy="80" r="1.5"/><circle cx="320" cy="140" r="1.5"/><circle cx="430" cy="90" r="1.5"/><circle cx="540" cy="130" r="1.5"/><circle cx="60" cy="200" r="1.5"/><circle cx="260" cy="180" r="1.5"/><circle cx="400" cy="200" r="1.5"/></g>`;
+  }
+  return "";
+}
+
+function svgFor(place, variant){
+  const themeKey = detectTheme(place);
+  const [c1, c2, accent] = THEMES[themeKey] || THEMES.default;
+  const angles = [135, 110, 165, 195, 75, 225];
+  const angle = angles[variant % 6];
+  const sil = silhouetteFor(themeKey, c2, accent);
+  const atm = atmosphereFor(variant, accent);
+  const gradId = `bg${place.id}v${variant}`;
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="${gradId}" gradientTransform="rotate(${angle - 90} 0.5 0.5)"><stop offset="0%" stop-color="${c1}"/><stop offset="100%" stop-color="${c2}"/></linearGradient></defs><rect width="600" height="400" fill="url(#${gradId})"/>${atm}${sil}<rect x="14" y="14" width="572" height="372" fill="none" stroke="${accent}" stroke-width="0.8" opacity="0.4"/></svg>`;
+
+  return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+const TIER_TITLES = {
+  S: { num:"I", title:"Высший эшелон", meta:"То, ради чего едут — 10 мест" },
+  A: { num:"II", title:"Очень стоящие", meta:"Глубина и широта — 10 мест" },
+  B: { num:"III", title:"Хорошо, но с оговорками", meta:"С пониманием контекста — 10 мест" },
+  C: { num:"IV", title:"Второй круг — для углубления", meta:"Тихая Черногория — 20 мест" }
+};
+
+function getVoteState(id){
+  return VOTES[id] || { him:false, her:false };
+}
+
+function renderAll(){
+  const root = document.getElementById("places-root");
+  root.innerHTML = "";
+  
+  const tiers = ["S","A","B","C"];
+  tiers.forEach(t => {
+    const ttl = TIER_TITLES[t];
+    const section = document.createElement("section");
+    section.className = "tier-section";
+    section.dataset.tier = t;
+    section.innerHTML = `
+      <div class="tier-head">
+        <span class="tier-num">${ttl.num}</span>
+        <span class="tier-title">${ttl.title}</span>
+        <span class="tier-meta">${ttl.meta}</span>
+      </div>
+      <div class="grid" id="grid-${t}"></div>
+    `;
+    root.appendChild(section);
+    const grid = section.querySelector(`#grid-${t}`);
+    PLACES.filter(p => p.tier === t).forEach(p => {
+      grid.appendChild(renderCard(p));
+    });
+  });
+  applyFilters();
+  updateStats();
+}
+
+function renderCard(p){
+  const v = getVoteState(p.id);
+  const comments = COMMENTS[p.id] || [];
+  const both = v.him && v.her;
+  
+  const card = document.createElement("article");
+  card.className = "card" + (both ? " both-want" : "");
+  card.dataset.tier = p.tier;
+  card.dataset.id = p.id;
+  card.dataset.him = v.him ? "1" : "0";
+  card.dataset.her = v.her ? "1" : "0";
+  
+  const tierLabel = {S:"I · Жемчужина",A:"II · Очень стоит",B:"III · С оговорками",C:"IV · Углубление"}[p.tier];
+  const initial = p.name.charAt(0);
+  
+  card.innerHTML = `
+    <div class="both-flag">★ Оба хотим</div>
+    <div class="card-photo" id="photo-${p.id}">
+      <img src="${svgFor(p, 0)}" alt="${p.name}" loading="lazy" />
+      <div class="fallback">${initial}</div>
+      <div class="photo-overlay"></div>
+      <div class="cat-badge">${p.cat}</div>
+      <button class="photo-gallery-btn" data-action="gallery" data-id="${p.id}">✦ Галерея</button>
+      <div class="photo-meta">
+        <div class="rank-num">${p.rank.toString().padStart(2,"0")}</div>
+        <div class="tier-badge">${tierLabel}</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">${p.name}</h3>
+      <p class="card-desc">${p.desc}</p>
+      
+      <div class="detail-section">
+        <div class="detail-head pros"><span class="ico">+</span>Плюсы</div>
+        <ul class="detail-list pros">${p.pros.map(x=>`<li>${x}</li>`).join("")}</ul>
+      </div>
+      
+      <div class="detail-section">
+        <div class="detail-head cons"><span class="ico">−</span>Минусы</div>
+        <ul class="detail-list cons">${p.cons.map(x=>`<li>${x}</li>`).join("")}</ul>
+      </div>
+      
+      <div class="detail-section">
+        <div class="detail-head warn"><span class="ico">!</span>Опасности и подводные камни</div>
+        <ul class="detail-list warn">${p.warn.map(x=>`<li>${x}</li>`).join("")}</ul>
+      </div>
+      
+      <div class="detail-section">
+        <div class="detail-head gem"><span class="ico">✦</span>Изюминки</div>
+        <ul class="detail-list gem">${p.gems.map(x=>`<li>${x}</li>`).join("")}</ul>
+      </div>
+      
+      <div class="card-actions">
+        <a class="act map" href="${gMapsUrl(p)}" target="_blank" rel="noopener">→ На карте</a>
+        <button class="act gallery" data-action="gallery" data-id="${p.id}">✦ Фото</button>
+        <button class="act comment" data-action="comment" data-id="${p.id}">
+          💬 Заметки ${comments.length ? `<span class="count">${comments.length}</span>` : ""}
+        </button>
+      </div>
+    </div>
+    <div class="vote-row">
+      <button class="vote-btn him ${v.him?"active":""}" data-action="vote" data-id="${p.id}" data-who="him">
+        <span class="heart">${v.him?"♥":"♡"}</span> Он хочет
+      </button>
+      <button class="vote-btn her ${v.her?"active":""}" data-action="vote" data-id="${p.id}" data-who="her">
+        <span class="heart">${v.her?"♥":"♡"}</span> Она хочет
+      </button>
+    </div>
+  `;
+  
+  return card;
+}
+
+// ============================================================ INTERACTIONS
+async function toggleVote(id, who){
+  if(!VOTES[id]) VOTES[id] = { him:false, her:false };
+  VOTES[id][who] = !VOTES[id][who];
+  await saveVotes();
+  // Re-render just this card
+  const oldCard = document.querySelector(`.card[data-id="${id}"]`);
+  if(oldCard){
+    const p = PLACES.find(x => x.id === id);
+    const newCard = renderCard(p);
+    oldCard.replaceWith(newCard);
+  }
+  applyFilters();
+  updateStats();
+}
+
+function openGallery(id){
+  const p = PLACES.find(x => x.id === id);
+  document.getElementById("gallery-title").textContent = p.name;
+  const grid = document.getElementById("gallery-grid");
+  grid.innerHTML = "";
+  // 6 SVG variants — different gradient angles + atmospheric overlays
+  for(let i=0;i<6;i++){
+    const img = document.createElement("img");
+    img.src = svgFor(p, i);
+    img.alt = p.name;
+    img.loading = "lazy";
+    grid.appendChild(img);
+  }
+  document.getElementById("google-images-link").href = gImagesUrl(p);
+  document.getElementById("yandex-images-link").href = yImagesUrl(p);
+  document.getElementById("gallery-modal").classList.add("open");
+}
+
+function openComments(id){
+  const p = PLACES.find(x => x.id === id);
+  activeCommentPlace = id;
+  document.getElementById("comment-title").textContent = "Заметки · " + p.name;
+  renderCommentsList(id);
+  document.getElementById("comment-modal").classList.add("open");
+  document.getElementById("comment-text").value = "";
+}
+
+function renderCommentsList(id){
+  const list = document.getElementById("comments-list");
+  const arr = COMMENTS[id] || [];
+  if(arr.length === 0){
+    list.innerHTML = `<div class="no-comments">Пока никто ничего не сказал. Скажите первым.</div>`;
+    return;
+  }
+  list.innerHTML = arr.slice().reverse().map((c, idx) => {
+    const realIdx = arr.length - 1 - idx;
+    const date = new Date(c.ts);
+    const timeStr = date.toLocaleString("ru-RU", { day:"numeric", month:"short", hour:"2-digit", minute:"2-digit" });
+    return `
+      <div class="comment ${c.who}">
+        <div class="comment-head">
+          <span class="who">${c.who === "him" ? "👨 Он" : "👩 Она"}</span>
+          <span class="comment-time">${timeStr}</span>
+        </div>
+        <div class="comment-text">${escapeHtml(c.text)}</div>
+      </div>
+    `;
+  }).join("");
+}
+
+function escapeHtml(s){
+  const d = document.createElement("div");
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+async function submitComment(){
+  if(activeCommentPlace === null) return;
+  const text = document.getElementById("comment-text").value.trim();
+  if(!text) return;
+  if(!COMMENTS[activeCommentPlace]) COMMENTS[activeCommentPlace] = [];
+  COMMENTS[activeCommentPlace].push({
+    who: currentCommentWho,
+    text: text,
+    ts: Date.now()
+  });
+  await saveComments();
+  document.getElementById("comment-text").value = "";
+  renderCommentsList(activeCommentPlace);
+  // Update card comment count
+  const card = document.querySelector(`.card[data-id="${activeCommentPlace}"]`);
+  if(card){
+    const p = PLACES.find(x => x.id === activeCommentPlace);
+    const newCard = renderCard(p);
+    card.replaceWith(newCard);
+  }
+  updateStats();
+}
+
+function closeModal(id){
+  document.getElementById(id).classList.remove("open");
+  if(id === "comment-modal") activeCommentPlace = null;
+}
+
+// ============================================================ FILTERS
+let filterTier = "all";
+let filterVote = "all";
+
+function applyFilters(){
+  document.querySelectorAll(".card").forEach(card => {
+    let show = true;
+    if(filterTier !== "all" && card.dataset.tier !== filterTier) show = false;
+    const him = card.dataset.him === "1";
+    const her = card.dataset.her === "1";
+    if(filterVote === "both" && !(him && her)) show = false;
+    if(filterVote === "him" && !(him && !her)) show = false;
+    if(filterVote === "her" && !(her && !him)) show = false;
+    if(filterVote === "none" && (him || her)) show = false;
+    card.classList.toggle("hidden", !show);
+  });
+  // hide empty sections
+  document.querySelectorAll(".tier-section").forEach(sec => {
+    const visible = sec.querySelectorAll(".card:not(.hidden)").length;
+    sec.style.display = visible === 0 ? "none" : "";
+  });
+}
+
+function updateStats(){
+  let both = 0, him = 0, her = 0, comments = 0;
+  PLACES.forEach(p => {
+    const v = VOTES[p.id] || { him:false, her:false };
+    if(v.him && v.her) both++;
+    else if(v.him) him++;
+    else if(v.her) her++;
+    comments += (COMMENTS[p.id] || []).length;
+  });
+  document.getElementById("stat-both").textContent = both;
+  document.getElementById("stat-him").textContent = him;
+  document.getElementById("stat-her").textContent = her;
+  document.getElementById("stat-comments").textContent = comments;
+}
+
+// ============================================================ EVENTS
+document.addEventListener("click", e => {
+  const target = e.target.closest("[data-action]");
+  if(target){
+    const action = target.dataset.action;
+    const id = parseInt(target.dataset.id);
+    if(action === "vote"){
+      toggleVote(id, target.dataset.who);
+    } else if(action === "gallery"){
+      openGallery(id);
+    } else if(action === "comment"){
+      openComments(id);
+    }
+  }
+  // close modal on backdrop click
+  if(e.target.classList.contains("modal-bg")){
+    e.target.classList.remove("open");
+    if(e.target.id === "comment-modal") activeCommentPlace = null;
+  }
+});
+
+// tier chips
+document.querySelectorAll(".tier-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll(".tier-chip").forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+    filterTier = chip.dataset.tier;
+    applyFilters();
+  });
+});
+// vote chips
+document.querySelectorAll(".vote-chip").forEach(chip => {
+  chip.addEventListener("click", () => {
+    document.querySelectorAll(".vote-chip").forEach(c => c.classList.remove("active"));
+    chip.classList.add("active");
+    filterVote = chip.dataset.vote;
+    applyFilters();
+  });
+});
+
+// comment who toggle
+document.querySelectorAll("#comment-who-pick button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#comment-who-pick button").forEach(b => b.classList.remove("active","him","her"));
+    btn.classList.add("active", btn.dataset.who);
+    currentCommentWho = btn.dataset.who;
+  });
+});
+
+document.getElementById("comment-submit").addEventListener("click", submitComment);
+document.getElementById("comment-text").addEventListener("keydown", e => {
+  if(e.key === "Enter" && (e.ctrlKey || e.metaKey)){
+    e.preventDefault();
+    submitComment();
+  }
+});
+
+// escape closes modals
+document.addEventListener("keydown", e => {
+  if(e.key === "Escape"){
+    document.querySelectorAll(".modal-bg.open").forEach(m => m.classList.remove("open"));
+    activeCommentPlace = null;
+  }
+});
+
+// ============================================================ SETTINGS / SETUP UI
+function openSettings(){
+  renderSettings();
+  document.getElementById("settings-modal").classList.add("open");
+}
+
+function renderSettings(){
+  const body = document.getElementById("settings-body");
+  if(!CONFIG){
+    // not connected — show onboarding
+    body.innerHTML = `
+      <h2>Синхронизация между двумя устройствами</h2>
+      <div class="setup-sub">Чтобы вы с партнёром видели голоса и заметки друг друга в реальном времени, страница использует бесплатный jsonbin.io. Один раз настроите — дальше всё само.</div>
+
+      <div class="setup-step">
+        <div class="setup-step-num">1</div>
+        <div class="setup-step-body">
+          Откройте <a href="https://jsonbin.io" target="_blank" rel="noopener">jsonbin.io</a> и зарегистрируйтесь (бесплатно, 30 секунд — почта + пароль).
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="setup-step-num">2</div>
+        <div class="setup-step-body">
+          На сайте jsonbin откройте раздел <strong>API Keys</strong> в меню. Скопируйте свой <strong>Master Key</strong> (длинная строка, начинается с <code>$2a$10$</code>).
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="setup-step-num">3</div>
+        <div class="setup-step-body">
+          Вставьте ключ сюда и нажмите «Создать общее хранилище» — будет создано новое хранилище специально для нас:
+          <input type="password" class="setup-input" id="master-key-input" placeholder="$2a$10$..." />
+          <div class="setup-actions">
+            <button class="setup-btn primary" id="setup-create">Создать общее хранилище</button>
+            <button class="setup-btn ghost" id="setup-skip">Пропустить — только локально</button>
+          </div>
+          <div id="setup-msg"></div>
+        </div>
+      </div>
+    `;
+    document.getElementById("setup-create").addEventListener("click", handleSetupCreate);
+    document.getElementById("setup-skip").addEventListener("click", () => closeModal("settings-modal"));
+  } else {
+    // already connected — show share URL + reset
+    const shareUrl = buildShareUrl();
+    const lastSync = LAST_SYNC_AT ? new Date(LAST_SYNC_AT).toLocaleString("ru-RU") : "ещё не было";
+    body.innerHTML = `
+      <h2>Синхронизация активна</h2>
+      <div class="setup-sub">Голоса и заметки автоматически сохраняются и подгружаются для обоих партнёров.</div>
+
+      <div class="setup-step">
+        <div class="setup-step-num">A</div>
+        <div class="setup-step-body">
+          <strong>Поделиться с партнёром.</strong> Отправьте эту ссылку — у партнёра автоматически подключится то же самое хранилище:
+          <div class="share-box" id="share-box">${escapeHtml(shareUrl)}</div>
+          <div class="setup-actions">
+            <button class="setup-btn primary" id="copy-share">Скопировать ссылку</button>
+            <button class="setup-btn ghost" id="force-sync">Обновить сейчас</button>
+          </div>
+          <div id="share-msg"></div>
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="setup-step-num">i</div>
+        <div class="setup-step-body" style="font-size:14px;color:var(--stone)">
+          ID хранилища: <code>${escapeHtml(CONFIG.binId)}</code><br>
+          Последняя синхронизация: ${lastSync}<br>
+          Статус: ${syncStateLabel()}
+        </div>
+      </div>
+
+      <div class="setup-step">
+        <div class="setup-step-num">⚠</div>
+        <div class="setup-step-body">
+          <strong>Отключить синхронизацию</strong> — данные останутся в этом браузере, но перестанут синхронизироваться с партнёром.
+          <div class="setup-actions">
+            <button class="setup-btn ghost" id="disconnect">Отключить</button>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById("copy-share").addEventListener("click", handleCopyShare);
+    document.getElementById("force-sync").addEventListener("click", async () => {
+      await fetchRemoteAndRerender();
+      renderSettings();
+    });
+    document.getElementById("disconnect").addEventListener("click", () => {
+      if(confirm("Отключить синхронизацию? Данные останутся локально.")){
+        clearConfig();
+        setSyncState("local");
+        renderSettings();
+      }
+    });
+  }
+}
+
+async function handleSetupCreate(){
+  const input = document.getElementById("master-key-input");
+  const msgEl = document.getElementById("setup-msg");
+  const key = (input.value || "").trim();
+  msgEl.innerHTML = "";
+  if(!key.startsWith("$2") || key.length < 30){
+    msgEl.innerHTML = `<div class="setup-msg error">Это не похоже на Master Key от jsonbin. Должна быть длинная строка, начинающаяся с <code>$2a$10$</code> или <code>$2b$10$</code>.</div>`;
+    return;
+  }
+  const btn = document.getElementById("setup-create");
+  btn.disabled = true;
+  btn.textContent = "Создаём…";
+  try{
+    const binId = await createNewBin(key);
+    CONFIG = { binId, masterKey: key };
+    lsSet(LS_CONFIG, CONFIG);
+    // Seed with current local data so we don't lose existing votes
+    await pushRemoteNow();
+    msgEl.innerHTML = `<div class="setup-msg ok">Готово! Хранилище создано. Сейчас покажу ссылку для партнёра.</div>`;
+    setTimeout(() => renderSettings(), 800);
+  }catch(e){
+    msgEl.innerHTML = `<div class="setup-msg error">Не получилось: ${escapeHtml(e.message)}. Проверьте Master Key.</div>`;
+    btn.disabled = false;
+    btn.textContent = "Создать общее хранилище";
+  }
+}
+
+function handleCopyShare(){
+  const url = buildShareUrl();
+  const msg = document.getElementById("share-msg");
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(() => {
+      msg.innerHTML = `<div class="setup-msg ok">Ссылка скопирована.</div>`;
+      setTimeout(() => { msg.innerHTML = ""; }, 2500);
+    }).catch(() => {
+      fallbackCopy(url, msg);
+    });
+  } else {
+    fallbackCopy(url, msg);
+  }
+}
+
+function fallbackCopy(url, msg){
+  // Select the share box content
+  const box = document.getElementById("share-box");
+  const range = document.createRange();
+  range.selectNodeContents(box);
+  const sel = window.getSelection();
+  sel.removeAllRanges();
+  sel.addRange(range);
+  try{ document.execCommand("copy"); msg.innerHTML = `<div class="setup-msg ok">Скопировано.</div>`; }
+  catch(e){ msg.innerHTML = `<div class="setup-msg error">Не получилось скопировать автоматически — выделите вручную.</div>`; }
+}
+
+// open settings button
+document.getElementById("open-settings").addEventListener("click", openSettings);
+
+// ============================================================ INIT
+(async function(){
+  // initial state
+  setSyncState("idle");
+  await loadAll();
+  renderAll();
+  startBackgroundSync();
+  // first run? open setup
+  if(!CONFIG && !lsGet(LS_STATE + "_dismissed")){
+    setTimeout(() => {
+      openSettings();
+      lsSet(LS_STATE + "_dismissed", true);
+    }, 600);
+  }
+})();
+</script>
+</body>
+</html>
