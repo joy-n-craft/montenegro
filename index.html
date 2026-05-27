@@ -497,6 +497,9 @@ body::before{
 .act:hover{background:var(--ink);color:var(--paper-3);border-color:var(--ink)}
 .act.map:hover{background:var(--sea);border-color:var(--sea)}
 .act.gallery:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.act.yt:hover{background:#c8281a;color:var(--paper-3);border-color:#c8281a}
+.act.ig:hover{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888);color:var(--paper-3);border-color:#bc1888}
+.act.tt:hover{background:#000;color:var(--paper-3);border-color:#000}
 .act.comment{
   margin-left:auto;
 }
@@ -896,8 +899,11 @@ footer .ornament{
       </div>
       <div class="gallery" id="gallery-grid"></div>
       <div class="gallery-actions">
-        <a class="act gallery" id="google-images-link" target="_blank" rel="noopener">→ Найти больше в Google Images</a>
+        <a class="act gallery" id="google-images-link" target="_blank" rel="noopener">→ Google Images</a>
         <a class="act" id="yandex-images-link" target="_blank" rel="noopener">→ Yandex Images</a>
+        <a class="act yt" id="youtube-link" target="_blank" rel="noopener">▶ YouTube</a>
+        <a class="act ig" id="instagram-link" target="_blank" rel="noopener">◉ Reels</a>
+        <a class="act tt" id="tiktok-link" target="_blank" rel="noopener">♪ TikTok</a>
       </div>
     </div>
   </div>
@@ -1656,6 +1662,27 @@ function gImagesUrl(p){
 function yImagesUrl(p){
   return `https://yandex.com/images/search?text=${encodeURIComponent(p.name+" montenegro")}`;
 }
+function ytUrl(p){
+  // English title gives much better YouTube results than Russian
+  const w = WIKI[p.id];
+  const q = (w ? w[0] : p.name) + " Montenegro";
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(q)}&sp=CAMSAhAB`; // sp=...: sort by view count, filter videos
+}
+function igUrl(p){
+  // Instagram tag URL — derive lowercase Latin tag
+  const w = WIKI[p.id];
+  const src = (w ? w[1] : p.name);
+  const tag = src.toLowerCase()
+    .replace(/đ/g, "d").replace(/ć/g, "c").replace(/š/g, "s").replace(/ž/g, "z").replace(/č/g, "c").replace(/ñ/g, "n")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]/g, "");
+  return `https://www.instagram.com/explore/tags/${tag}/`;
+}
+function tiktokUrl(p){
+  const w = WIKI[p.id];
+  const q = (w ? w[0] : p.name) + " Montenegro";
+  return `https://www.tiktok.com/search?q=${encodeURIComponent(q)}`;
+}
 // SVG art generator — beautiful editorial-style placeholders that work inside CSP-locked iframes
 // (external images are blocked; this draws inline)
 
@@ -1867,6 +1894,8 @@ function renderCard(p){
       <div class="card-actions">
         <a class="act map" href="${gMapsUrl(p)}" target="_blank" rel="noopener">→ На карте</a>
         <button class="act gallery" data-action="gallery" data-id="${p.id}">✦ Фото</button>
+        <a class="act yt" href="${ytUrl(p)}" target="_blank" rel="noopener">▶ YouTube</a>
+        <a class="act ig" href="${igUrl(p)}" target="_blank" rel="noopener">◉ Reels</a>
         <button class="act comment" data-action="comment" data-id="${p.id}">
           💬 Заметки ${comments.length ? `<span class="count">${comments.length}</span>` : ""}
         </button>
@@ -1908,6 +1937,9 @@ function openGallery(id){
   grid.innerHTML = `<div class="loader" style="grid-column:1/-1">Загружаем фотографии из Wikimedia Commons…</div>`;
   document.getElementById("google-images-link").href = gImagesUrl(p);
   document.getElementById("yandex-images-link").href = yImagesUrl(p);
+  document.getElementById("youtube-link").href = ytUrl(p);
+  document.getElementById("instagram-link").href = igUrl(p);
+  document.getElementById("tiktok-link").href = tiktokUrl(p);
   document.getElementById("gallery-modal").classList.add("open");
 
   loadGallery(id).then(urls => {
