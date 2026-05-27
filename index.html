@@ -211,10 +211,53 @@ body::before{
   cursor:pointer;
   transition:all .18s;
   border-radius:0;
+  white-space:nowrap;
+  flex-shrink:0;
 }
 .chip:hover{background:var(--paper-deep);border-color:var(--ink)}
 .chip.active{background:var(--ink);color:var(--paper-2);border-color:var(--ink)}
 .chip.active.gold{background:var(--gold);border-color:var(--gold);color:var(--paper-3)}
+
+/* ----- MOBILE TOOLBAR: horizontal scroll per row instead of wrapping ----- */
+@media (max-width: 760px) {
+  .toolbar{
+    position:static;  /* not sticky on mobile — would dominate the screen */
+    padding:10px 0;
+  }
+  .toolbar-inner{
+    flex-direction:column;
+    align-items:stretch;
+    gap:8px;
+    padding:0 16px;
+  }
+  .filters{
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:2px;
+    width:100%;
+  }
+  .filters::-webkit-scrollbar{display:none}
+  .filter-label{
+    position:sticky;left:0;
+    background:linear-gradient(90deg,rgba(241,232,212,.96) 80%,transparent);
+    padding-right:8px;
+    margin-right:0;
+    flex-shrink:0;
+  }
+  .chip{
+    font-size:11px;
+    padding:5px 10px;
+    letter-spacing:.08em;
+  }
+  .settings-btn{
+    font-size:11px;
+    padding:5px 10px;
+    margin-left:0 !important;
+  }
+}
 
 .persona-toggle{
   display:flex;gap:0;
@@ -2018,25 +2061,38 @@ function clearConfig(){
 async function fetchRemote(){
   if(!CONFIG) return false;
   setSyncState("syncing");
-  try{
-    const r = await fetch(`${JSONBIN_API}/${CONFIG.binId}/latest`, {
-      headers: { "X-Master-Key": CONFIG.masterKey, "X-Bin-Meta": "false" }
-    });
-    if(!r.ok) throw new Error("HTTP " + r.status);
-    const data = await r.json();
-    // jsonbin v3 returns { record: {...}, metadata: {...} } unless meta:false
-    const state = data.record !== undefined ? data.record : data;
-    VOTES = state.votes || {};
-    COMMENTS = state.comments || {};
-    lsSet(LS_STATE, { votes: VOTES, comments: COMMENTS });
-    LAST_SYNC_AT = Date.now();
-    setSyncState("synced");
-    return true;
-  }catch(e){
-    console.warn("fetchRemote failed", e);
-    setSyncState("error");
-    return false;
+
+  // Public-first strategy: a header-less GET is a "simple" CORS request — no preflight,
+  // works on Safari, iCloud Private Relay, corporate proxies that strip custom headers.
+  // We fall back to the authed call only if public read fails (e.g. private bin).
+  let data = null;
+  try {
+    const r = await fetch(`${JSONBIN_API}/${CONFIG.binId}/latest`);
+    if (r.ok) data = await r.json();
+  } catch (_) { /* fall through */ }
+
+  if (!data) {
+    try {
+      const r = await fetch(`${JSONBIN_API}/${CONFIG.binId}/latest`, {
+        headers: { "X-Master-Key": CONFIG.masterKey, "X-Bin-Meta": "false" }
+      });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      data = await r.json();
+    } catch (e) {
+      console.warn("fetchRemote failed", e);
+      const hasCache = !!lsGet(LS_STATE);
+      setSyncState(hasCache ? "offline" : "error");
+      return false;
+    }
   }
+
+  const state = data.record !== undefined ? data.record : data;
+  VOTES = state.votes || {};
+  COMMENTS = state.comments || {};
+  lsSet(LS_STATE, { votes: VOTES, comments: COMMENTS });
+  LAST_SYNC_AT = Date.now();
+  setSyncState("synced");
+  return true;
 }
 
 async function pushRemoteNow(){
@@ -2056,7 +2112,8 @@ async function pushRemoteNow(){
     setSyncState("synced");
   }catch(e){
     console.warn("pushRemote failed", e);
-    setSyncState("error");
+    // local data is preserved — show as offline rather than scary error
+    setSyncState("offline");
   }
 }
 
@@ -2077,7 +2134,8 @@ function setSyncState(s){
     idle:    {dot:"#8a8073", label:"…"},
     syncing: {dot:"#b88a2e", label:"Синхронизация…"},
     synced:  {dot:"#4f6437", label:"Синхронизировано"},
-    error:   {dot:"#a3372a", label:"Ошибка сети"},
+    error:   {dot:"#a3372a", label:"Нет связи"},
+    offline: {dot:"#b88a2e", label:"Оффлайн (локально)"},
     local:   {dot:"#6b6358", label:"Только локально"}
   };
   const m = map[s] || map.idle;
@@ -2087,7 +2145,8 @@ function setSyncState(s){
 
 function syncStateLabel(){
   return ({
-    idle:"ожидание",syncing:"синхронизация",synced:"синхронизировано",error:"ошибка сети",local:"только локально"
+    idle:"ожидание",syncing:"синхронизация",synced:"синхронизировано",
+    error:"нет связи",offline:"оффлайн (локально)",local:"только локально"
   })[SYNC_STATE] || SYNC_STATE;
 }
 
